@@ -12,23 +12,23 @@ type AppProps = {
 };
 
 const App = ({ offersCount }: AppProps) => (
-<HelmetProvider>
-  <BrowserRouter>
-    <Routes>
-      <Route path={AppRoute.Root} element={<Main offersCount={offersCount} />} />
-      <Route path={AppRoute.Login} element={<Login />} />
-      <Route
-        path={AppRoute.Favorites}
-        element={
-          <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-            <Favorites />
-          </PrivateRoute>
-        }
-      />
-      <Route path={AppRoute.Offer} element={<Offer />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  </BrowserRouter>
-</HelmetProvider>
+  <HelmetProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path={AppRoute.Root} element={<Main offersCount={offersCount} />} />
+        <Route path={AppRoute.Login} element={<Login />} />
+        <Route
+          path={AppRoute.Favorites}
+          element={
+            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+              <Favorites />
+            </PrivateRoute>
+          }
+        />
+        <Route path={AppRoute.Offer} element={<Offer />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+  </HelmetProvider>
 );
 export default App;

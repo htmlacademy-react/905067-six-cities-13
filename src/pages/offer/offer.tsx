@@ -1,4 +1,4 @@
-import Logo from "../../components/logo/logo";
+import Logo from '../../components/logo/logo';
 import { Helmet } from 'react-helmet-async';
 
 const Offer = () => (
@@ -7,7 +7,7 @@ const Offer = () => (
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-          <Logo/>
+            <Logo/>
           </div>
           <nav className="header__nav">
             <ul className="header__nav-list">
@@ -35,9 +35,9 @@ const Offer = () => (
     </header>
     <main className="page__main page__main--offer">
       <section className="offer">
-      <Helmet>
-        <title>6 cities. Offer</title>
-      </Helmet>
+        <Helmet>
+          <title>6 cities. Offer</title>
+        </Helmet>
         <div className="offer__gallery-container container">
           <div className="offer__gallery">
             <div className="offer__image-wrapper">

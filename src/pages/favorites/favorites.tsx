@@ -1,12 +1,12 @@
 import {Helmet} from 'react-helmet-async';
-import Logo from "../../components/logo/logo";
+import Logo from '../../components/logo/logo';
 const Favorites = () => (
   <div className="page">
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-           <Logo/>
+            <Logo/>
           </div>
           <nav className="header__nav">
             <ul className="header__nav-list">
@@ -35,9 +35,9 @@ const Favorites = () => (
     <main className="page__main page__main--favorites">
       <div className="page__favorites-container container">
         <section className="favorites">
-        <Helmet>
-        <title>6 cities. Favorites</title>
-        </Helmet>
+          <Helmet>
+            <title>6 cities. Favorites</title>
+          </Helmet>
           <h1 className="favorites__title">Saved listing</h1>
           <ul className="favorites__list">
             <li className="favorites__locations-items">
