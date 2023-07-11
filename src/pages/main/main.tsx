@@ -1,5 +1,6 @@
 import Logo from '../../components/logo/logo';
 import OfferCard from '../../components/offer-card/offer-card';
+import { Helmet } from 'react-helmet-async';
 
 type MainProps = {
   offersCount: number;
@@ -11,7 +12,7 @@ const Main = ({ offersCount }: MainProps) => (
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-          <Logo/>
+            <Logo />
           </div>
           <nav className="header__nav">
             <ul className="header__nav-list">
@@ -41,6 +42,9 @@ const Main = ({ offersCount }: MainProps) => (
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
         <section className="locations container">
+          <Helmet>
+            <title>6 cities</title>
+          </Helmet>
           <ul className="locations__list tabs__list">
             <li className="locations__item">
               <a className="locations__item-link tabs__item" href="#">
