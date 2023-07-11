@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import './not-found.css'
+import './not-found.css';
 function NotFound(): JSX.Element {
   return (
     <div className='not-found__container'>
