@@ -1,5 +1,5 @@
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 import {HelmetProvider} from 'react-helmet-async';
 import Main from '../../pages/main/main';
 import Login from '../../pages/login/login';
@@ -20,7 +20,7 @@ const App = ({ offersCount }: AppProps) => (
         <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+            <PrivateRoute isAuth={false}>
               <Favorites />
             </PrivateRoute>
           }
