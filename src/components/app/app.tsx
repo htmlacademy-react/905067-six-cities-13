@@ -32,7 +32,7 @@ const App = ({ offersCount, offers }: AppProps) => (
           }
         />
         <Route
-          path={AppRoute.Offer + `:id`}
+          path={`${AppRoute.Offer }:id`}
           element={<Offer offers={offers} />}
         />
         <Route path="*" element={<NotFound />} />

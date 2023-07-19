@@ -11,7 +11,7 @@ type OfferProp = {
 
 const Offer = ({ offers }: OfferProp) => {
   const { id } = useParams();
-  const offer = offers.find((o: { id: string }) => o.id == id);
+  const offer = offers.find((o: { id: string }) => o.id === id);
   if (offer === undefined) {
     return <Navigate to="*" />;
   }
@@ -126,9 +126,11 @@ const Offer = ({ offers }: OfferProp) => {
               <div className="offer__inside">
                 <h2 className="offer__inside-title">What&apos;s inside</h2>
                 <ul className="offer__inside-list">
-                  {additional.map((item: string) => {
-                    return <li className="offer__inside-item">{item}</li>;
-                  })}
+                  {additional.map((item: string) => (
+                    <li className="offer__inside-item" key={item.length}>
+                      {item}
+                    </li>
+                  ))}
                 </ul>
               </div>
               <div className="offer__host">
