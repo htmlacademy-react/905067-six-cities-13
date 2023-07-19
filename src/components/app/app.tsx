@@ -31,7 +31,10 @@ const App = ({ offersCount, offers }: AppProps) => (
             </PrivateRoute>
           }
         />
-        <Route path={AppRoute.Offer} element={<Offer />} />
+        <Route
+          path={AppRoute.Offer + `:id`}
+          element={<Offer offers={offers} />}
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -7,7 +7,7 @@ type OffersListProps = {
 };
 
 const OffersList = ({ offers }: OffersListProps) => {
-  const [, setActiveId] = useState<number>();
+  const [, setActiveId] = useState<string>();
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => (

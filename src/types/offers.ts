@@ -1,5 +1,5 @@
 export type Offer = {
-  id: number;
+  id: string;
   src: string;
   title: string;
   premium: boolean;

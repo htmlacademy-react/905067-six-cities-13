@@ -1,7 +1,7 @@
 import { Offers } from '../types/offers';
 export const offers: Offers = [
   {
-    id: 3123321,
+    id: '3123321',
     src: 'img/apartment-01.jpg',
     title: 'Beautiful & luxurious studio at great location',
     premium: true,
@@ -15,7 +15,7 @@ export const offers: Offers = [
     cordinates: [52.3909553943508, 4.8309666406198],
   },
   {
-    id: 312332111111111,
+    id: '312332111111111',
     src: 'img/apartment-02.jpg',
     title: 'Beautiful & luxurious studio at great location',
     premium: false,
@@ -29,7 +29,7 @@ export const offers: Offers = [
     cordinates: [51.2217, 6.77615],
   },
   {
-    id: 3124442212,
+    id: '3124442212',
     src: 'img/apartment-03.jpg',
     title: 'Beautiful & luxurious studio at great location',
     premium: true,
@@ -43,7 +43,21 @@ export const offers: Offers = [
     cordinates: [51.2217, 6.78615],
   },
   {
-    id: 311221112,
+    id: '311221112',
+    src: 'img/apartment-01.jpg',
+    title: 'Beautiful & luxurious studio at great location',
+    premium: false,
+    rating: '60%',
+    offerType: 'appartament',
+    bedroomsCount: 3,
+    gusetCount: 4,
+    price: 140,
+    additional: ['Wi-Fi', 'Wi-Fi', 'Wi-Fi', 'Wi-Fi', 'Wi-Fi', 'Wi-Fi', 'Wi-Fi'],
+    city: 'Dusseldorf',
+    cordinates: [51.2217, 6.78615],
+  },
+  {
+    id: '311221112',
     src: 'img/apartment-01.jpg',
     title: 'Beautiful & luxurious studio at great location',
     premium: false,
