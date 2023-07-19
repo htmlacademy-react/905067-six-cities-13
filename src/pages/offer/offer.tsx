@@ -8,7 +8,7 @@ const Offer = () => (
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <Logo/>
+            <Logo />
           </div>
           <nav className="header__nav">
             <ul className="header__nav-list">
@@ -19,7 +19,7 @@ const Offer = () => (
                 >
                   <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                   <span className="header__user-name user__name">
-                      Oliver.conner@gmail.com
+                    Oliver.conner@gmail.com
                   </span>
                   <span className="header__favorite-count">3</span>
                 </a>
@@ -92,7 +92,7 @@ const Offer = () => (
             </div>
             <div className="offer__name-wrapper">
               <h1 className="offer__name">
-                  Beautiful &amp; luxurious studio at great location
+                Beautiful &amp; luxurious studio at great location
               </h1>
               <button className="offer__bookmark-button button" type="button">
                 <svg className="offer__bookmark-icon" width={31} height={33}>
@@ -110,13 +110,13 @@ const Offer = () => (
             </div>
             <ul className="offer__features">
               <li className="offer__feature offer__feature--entire">
-                  Apartment
+                Apartment
               </li>
               <li className="offer__feature offer__feature--bedrooms">
-                  3 Bedrooms
+                3 Bedrooms
               </li>
               <li className="offer__feature offer__feature--adults">
-                  Max 4 adults
+                Max 4 adults
               </li>
             </ul>
             <div className="offer__price">
@@ -155,20 +155,20 @@ const Offer = () => (
               </div>
               <div className="offer__description">
                 <p className="offer__text">
-                    A quiet cozy and picturesque that hides behind a a river by
-                    the unique lightness of Amsterdam. The building is green and
-                    from 18th century.
+                  A quiet cozy and picturesque that hides behind a a river by
+                  the unique lightness of Amsterdam. The building is green and
+                  from 18th century.
                 </p>
                 <p className="offer__text">
-                    An independent House, strategically located between Rembrand
-                    Square and National Opera, but where the bustle of the city
-                    comes to rest in this alley flowery and colorful.
+                  An independent House, strategically located between Rembrand
+                  Square and National Opera, but where the bustle of the city
+                  comes to rest in this alley flowery and colorful.
                 </p>
               </div>
             </div>
             <section className="offer__reviews reviews">
               <h2 className="reviews__title">
-                  Reviews · <span className="reviews__amount">1</span>
+                Reviews · <span className="reviews__amount">1</span>
               </h2>
               <ul className="reviews__list">
                 <li className="reviews__item">
@@ -192,17 +192,17 @@ const Offer = () => (
                       </div>
                     </div>
                     <p className="reviews__text">
-                        A quiet cozy and picturesque that hides behind a a river
-                        by the unique lightness of Amsterdam. The building is
-                        green and from 18th century.
+                      A quiet cozy and picturesque that hides behind a a river
+                      by the unique lightness of Amsterdam. The building is
+                      green and from 18th century.
                     </p>
                     <time className="reviews__time" dateTime="2019-04-24">
-                        April 2019
+                      April 2019
                     </time>
                   </div>
                 </li>
               </ul>
-              <CommentForm/>
+              <CommentForm />
             </section>
           </div>
         </div>
@@ -211,7 +211,7 @@ const Offer = () => (
       <div className="container">
         <section className="near-places places">
           <h2 className="near-places__title">
-              Other places in the neighbourhood
+            Other places in the neighbourhood
           </h2>
           <div className="near-places__list places__list">
             <article className="near-places__card place-card">
@@ -230,9 +230,7 @@ const Offer = () => (
                 <div className="place-card__price-wrapper">
                   <div className="place-card__price">
                     <b className="place-card__price-value">€80</b>
-                    <span className="place-card__price-text">
-                        /&nbsp;night
-                    </span>
+                    <span className="place-card__price-text">/&nbsp;night</span>
                   </div>
                   <button
                     className="place-card__bookmark-button place-card__bookmark-button--active button"
@@ -276,9 +274,7 @@ const Offer = () => (
                 <div className="place-card__price-wrapper">
                   <div className="place-card__price">
                     <b className="place-card__price-value">€132</b>
-                    <span className="place-card__price-text">
-                        /&nbsp;night
-                    </span>
+                    <span className="place-card__price-text">/&nbsp;night</span>
                   </div>
                   <button
                     className="place-card__bookmark-button button"
@@ -325,9 +321,7 @@ const Offer = () => (
                 <div className="place-card__price-wrapper">
                   <div className="place-card__price">
                     <b className="place-card__price-value">€180</b>
-                    <span className="place-card__price-text">
-                        /&nbsp;night
-                    </span>
+                    <span className="place-card__price-text">/&nbsp;night</span>
                   </div>
                   <button
                     className="place-card__bookmark-button button"

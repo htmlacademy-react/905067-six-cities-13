@@ -5,15 +5,13 @@ type OfferCardFavoritesProps = {
 };
 
 const OfferCardFavorites = ({ offer }: OfferCardFavoritesProps) => {
-  const {premium,src,price,rating,title,offerType} = offer;
+  const { premium, src, price, rating, title, offerType } = offer;
   return (
     <article className="favorites__card place-card">
-      {premium ? (
+      {premium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
-      ) : (
-        ''
       )}
       <div className="favorites__image-wrapper place-card__image-wrapper">
         <a href="#">

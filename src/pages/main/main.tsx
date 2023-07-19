@@ -5,13 +5,12 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { Offers } from '../../types/offers';
 
-
 type MainProps = {
   offersCount: number;
   offers: Offers;
 };
 
-const Main = ({ offersCount,offers }: MainProps) => (
+const Main = ({ offersCount, offers }: MainProps) => (
   <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -34,9 +33,7 @@ const Main = ({ offersCount,offers }: MainProps) => (
                 </Link>
               </li>
               <li className="header__nav-item">
-                <Link
-                  to={AppRoute.Login} className="header__nav-link"
-                >
+                <Link to={AppRoute.Login} className="header__nav-link">
                   <span className="header__signout">Sign out</span>
                 </Link>
               </li>
@@ -119,7 +116,7 @@ const Main = ({ offersCount,offers }: MainProps) => (
                 </li>
               </ul>
             </form>
-            <OffersList offers={offers}/>
+            <OffersList offers={offers} />
           </section>
           <div className="cities__right-section">
             <section className="cities__map map" />

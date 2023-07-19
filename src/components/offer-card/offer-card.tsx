@@ -1,27 +1,25 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { Offer } from '../../types/offers';
+
 type OfferCardProps = {
   offer: Offer;
-  offerIsHover: (id:number) => void;
+  handleHover: (id: number) => void;
 };
 
-const OfferCard = ({ offer,offerIsHover }: OfferCardProps) => {
+const OfferCard = ({ offer, handleHover }: OfferCardProps) => {
   const { id, premium, src, title, offerType, price, rating } = offer;
 
   return (
-    <article className="cities__card place-card" onMouseMove={() => {
-      offerIsHover(id);
-    }}
+    <article
+      className="cities__card place-card"
+      onMouseMove={() => handleHover(id)}
     >
-      {premium ? (
+      {premium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
-      ) : (
-        ''
       )}
-
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link
           to={AppRoute.Offer}

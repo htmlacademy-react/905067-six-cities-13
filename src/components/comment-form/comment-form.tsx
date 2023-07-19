@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import StarInput from '../star-input/star-input';
+import { starInputsData } from '../../const';
 
 const CommentForm = () => {
   const [commentText, setCommentText] = useState('');
@@ -9,98 +11,21 @@ const CommentForm = () => {
         Your review
       </label>
       <div className="reviews__rating-form form__rating">
-        <input
-          className="form__rating-input visually-hidden"
-          name="rating"
-          defaultValue={5}
-          id="5-stars"
-          type="radio"
-          onChange={(e) => setCommentRate(e.target.value)}
-          checked={commentRate === '5'}
-        />
-        <label
-          htmlFor="5-stars"
-          className="reviews__rating-label form__rating-label"
-          title="perfect"
-        >
-          <svg className="form__star-image" width={37} height={33}>
-            <use xlinkHref="#icon-star" />
-          </svg>
-        </label>
-        <input
-          className="form__rating-input visually-hidden"
-          name="rating"
-          defaultValue={4}
-          id="4-stars"
-          type="radio"
-          onChange={(e) => setCommentRate(e.target.value)}
-          checked={commentRate === '4'}
-        />
-        <label
-          htmlFor="4-stars"
-          className="reviews__rating-label form__rating-label"
-          title="good"
-        >
-          <svg className="form__star-image" width={37} height={33}>
-            <use xlinkHref="#icon-star" />
-          </svg>
-        </label>
-        <input
-          className="form__rating-input visually-hidden"
-          name="rating"
-          defaultValue={3}
-          id="3-stars"
-          type="radio"
-          onChange={(e) => setCommentRate(e.target.value)}
-          checked={commentRate === '3'}
-        />
-        <label
-          htmlFor="3-stars"
-          className="reviews__rating-label form__rating-label"
-          title="not bad"
-        >
-          <svg className="form__star-image" width={37} height={33}>
-            <use xlinkHref="#icon-star" />
-          </svg>
-        </label>
-        <input
-          className="form__rating-input visually-hidden"
-          name="rating"
-          defaultValue={2}
-          id="2-stars"
-          type="radio"
-          onChange={(e) => setCommentRate(e.target.value)}
-          checked={commentRate === '2'}
-        />
-        <label
-          htmlFor="2-stars"
-          className="reviews__rating-label form__rating-label"
-          title="badly"
-        >
-          <svg className="form__star-image" width={37} height={33}>
-            <use xlinkHref="#icon-star" />
-          </svg>
-        </label>
-        <input
-          className="form__rating-input visually-hidden"
-          name="rating"
-          defaultValue={1}
-          id="1-star"
-          type="radio"
-          onChange={(e) => setCommentRate(e.target.value)}
-          checked={commentRate === '1'}
-        />
-        <label
-          htmlFor="1-star"
-          className="reviews__rating-label form__rating-label"
-          title="terribly"
-        >
-          <svg className="form__star-image" width={37} height={33}>
-            <use xlinkHref="#icon-star" />
-          </svg>
-        </label>
+        {starInputsData.map((data) => (
+          <StarInput
+            value={data.value}
+            id={data.id}
+            checkValue={data.checkValue}
+            title={data.title}
+            commentRate={commentRate}
+            setCommentRate={setCommentRate}
+            key={data.value}
+          />
+        ))}
       </div>
-      <textarea value={commentText} onChange={(e) => setCommentText(e.target.value)}
+      <textarea
+        value={commentText}
+        onChange={(e) => setCommentText(e.target.value)}
         className="reviews__textarea form__textarea"
         id="review"
         name="review"

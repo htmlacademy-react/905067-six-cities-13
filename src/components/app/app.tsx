@@ -1,6 +1,6 @@
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import {HelmetProvider} from 'react-helmet-async';
+import { HelmetProvider } from 'react-helmet-async';
 import Main from '../../pages/main/main';
 import Login from '../../pages/login/login';
 import Favorites from '../../pages/favorites/favorites';
@@ -8,22 +8,26 @@ import Offer from '../../pages/offer/offer';
 import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
 import { Offers } from '../../types/offers';
+
 type AppProps = {
   offersCount: number;
   offers: Offers;
 };
 
-const App = ({ offersCount,offers }: AppProps) => (
+const App = ({ offersCount, offers }: AppProps) => (
   <HelmetProvider>
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.Root} element={<Main offersCount={offersCount} offers={offers}/>} />
+        <Route
+          path={AppRoute.Root}
+          element={<Main offersCount={offersCount} offers={offers} />}
+        />
         <Route path={AppRoute.Login} element={<Login />} />
         <Route
           path={AppRoute.Favorites}
           element={
             <PrivateRoute isAuth>
-              <Favorites offers={offers}/>
+              <Favorites offers={offers} />
             </PrivateRoute>
           }
         />
