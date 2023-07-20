@@ -126,11 +126,17 @@ const Offer = ({ offers }: OfferProp) => {
               <div className="offer__inside">
                 <h2 className="offer__inside-title">What&apos;s inside</h2>
                 <ul className="offer__inside-list">
-                  {additional.map((item: string, i: number) => (
-                    <li className="offer__inside-item" key={item.length + i}>
-                      {item}
-                    </li>
-                  ))}
+                  {additional.map((item: string, i: number) => {
+                    const index = i;
+                    return (
+                      <li
+                        className="offer__inside-item"
+                        key={item.length * index}
+                      >
+                        {item}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
               <div className="offer__host">
