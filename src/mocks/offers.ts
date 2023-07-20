@@ -57,7 +57,7 @@ export const offers: Offers = [
     cordinates: [51.2217, 6.78615],
   },
   {
-    id: '311221112',
+    id: '31122111111111112',
     src: 'img/apartment-01.jpg',
     title: 'Beautiful & luxurious studio at great location',
     premium: false,

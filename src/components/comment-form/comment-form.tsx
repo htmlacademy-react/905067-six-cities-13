@@ -11,17 +11,20 @@ const CommentForm = () => {
         Your review
       </label>
       <div className="reviews__rating-form form__rating">
-        {starInputsData.map((data) => (
-          <StarInput
-            value={data.value}
-            id={data.id}
-            checkValue={data.checkValue}
-            title={data.title}
-            commentRate={commentRate}
-            setCommentRate={setCommentRate}
-            key={data.value}
-          />
-        ))}
+        {starInputsData.map((data) => {
+          const { value, title } = data;
+          return (
+            <StarInput
+              value={value}
+              id={`${value}-stars`}
+              checkValue={value.toString()}
+              title={title}
+              commentRate={commentRate}
+              setCommentRate={setCommentRate}
+              key={value}
+            />
+          );
+        })}
       </div>
       <textarea
         value={commentText}
