@@ -1,18 +1,24 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { Offer } from '../../types/offers';
+import cn from 'classnames';
 
 type OfferCardProps = {
   offer: Offer;
   handleHover: (id: string) => void;
+  isMainPage: boolean;
 };
 
-const OfferCard = ({ offer, handleHover }: OfferCardProps) => {
+const OfferCard = ({ offer, handleHover, isMainPage }: OfferCardProps) => {
   const { id, premium, src, title, offerType, price, rating } = offer;
 
   return (
     <article
-      className="cities__card place-card"
+      className={cn(
+        { 'near-places__card': !isMainPage },
+        { 'cities__card': isMainPage },
+        'place-card'
+      )}
       onMouseMove={() => handleHover(id)}
     >
       {premium && (
@@ -20,7 +26,13 @@ const OfferCard = ({ offer, handleHover }: OfferCardProps) => {
           <span>Premium</span>
         </div>
       )}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div
+        className={cn(
+          { 'near-places__image-wrapper': !isMainPage },
+          { 'cities__image-wrapper': isMainPage },
+          'place-card__image-wrapper'
+        )}
+      >
         <Link
           to={AppRoute.Offer + id}
           className="header__logo-link header__logo-link--active"

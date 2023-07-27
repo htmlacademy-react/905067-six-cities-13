@@ -1,5 +1,5 @@
 import Logo from '../../components/logo/logo';
-import {Helmet} from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => (
   <div className="page page--gray page--login">
@@ -7,7 +7,7 @@ const Login = () => (
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <Logo/>
+            <Logo />
           </div>
         </div>
       </div>
@@ -37,11 +37,8 @@ const Login = () => (
                 required
               />
             </div>
-            <button
-              className="login__submit form__submit button"
-              type="submit"
-            >
-                Sign in
+            <button className="login__submit form__submit button" type="submit">
+              Sign in
             </button>
           </form>
         </section>

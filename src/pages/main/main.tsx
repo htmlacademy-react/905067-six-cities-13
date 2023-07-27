@@ -127,10 +127,16 @@ const Main = ({ offersCount, offers }: MainProps) => {
               <OffersList
                 offers={offers}
                 onListStateChange={handleOffersListAtiveId}
+                isMainPage
               />
             </section>
             <div className="cities__right-section">
-              <Map city={CITY} offers={offers} activeId={offersListactiveId} />
+              <Map
+                city={CITY}
+                offers={offers}
+                activeId={offersListactiveId}
+                isMainPage
+              />
             </div>
           </div>
         </div>

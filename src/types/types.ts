@@ -6,3 +6,10 @@ export type City = {
     zoom: number;
   };
 };
+export type User = {
+  id: number;
+  isPro: boolean;
+  name: string;
+  avatarUrl: string;
+
+}
