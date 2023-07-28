@@ -1,19 +1,13 @@
 import { Offers } from '../../types/offers';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import OfferCard from '../offer-card/offer-card';
 
 type OffersListProps = {
   offers: Offers;
-  onListStateChange: (id: string) => void;
 };
 
-const OffersList = ({ offers, onListStateChange }: OffersListProps) => {
-  const [activeId, setActiveId] = useState<string>();
-  useEffect(() => {
-    if (activeId) {
-      onListStateChange(activeId);
-    }
-  }, [activeId, onListStateChange]);
+const OffersList = ({ offers }: OffersListProps) => {
+  const [, setActiveId] = useState<string>();
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => (
