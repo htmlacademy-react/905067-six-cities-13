@@ -10,17 +10,16 @@ import PrivateRoute from '../private-route/private-route';
 import { Offers } from '../../types/offers';
 
 type AppProps = {
-  offersCount: number;
   offers: Offers;
 };
 
-const App = ({ offersCount, offers }: AppProps) => (
+const App = ({ offers }: AppProps) => (
   <HelmetProvider>
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<Main offersCount={offersCount} offers={offers} />}
+          element={<Main />}
         />
         <Route path={AppRoute.Login} element={<Login />} />
         <Route
