@@ -8,7 +8,8 @@ import Map from '../../components/map/map';
 import CitiesList from '../../components/citiesList/citiesList';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { City } from '../../types/types';
-import { changeCity, showOffers } from '../../store/action';
+import { changeCity, showOffers, changeSort } from '../../store/action';
+import SortComponents from '../../components/sort/sort';
 
 const Main = () => {
   const [offersListactiveId, setOffersListActiveId] = useState<string>('0');
@@ -17,10 +18,15 @@ const Main = () => {
   };
   const offers = useAppSelector((state) => state.displayedOffers);
   const currentCity = useAppSelector((state) => state.city);
+  const currentSort = useAppSelector((state) => state.currentSort);
   const dispatch = useAppDispatch();
   const onCityClick = (city: City) => {
     dispatch(changeCity(city));
     dispatch(showOffers(city));
+  };
+  const onSortClick = (sortType: string) => {
+    dispatch(changeSort(sortType));
+    dispatch(showOffers(currentCity));
   };
   useEffect(() => {
     dispatch(showOffers(currentCity));
@@ -70,32 +76,8 @@ const Main = () => {
               <b className="places__found">
                 {offers.length} places to stay in {currentCity.name}
               </b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex={0}>
-                  Popular
-                  <svg className="places__sorting-arrow" width={7} height={4}>
-                    <use xlinkHref="#icon-arrow-select" />
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li
-                    className="places__option places__option--active"
-                    tabIndex={0}
-                  >
-                    Popular
-                  </li>
-                  <li className="places__option" tabIndex={0}>
-                    Price: low to high
-                  </li>
-                  <li className="places__option" tabIndex={0}>
-                    Price: high to low
-                  </li>
-                  <li className="places__option" tabIndex={0}>
-                    Top rated first
-                  </li>
-                </ul>
-              </form>
+
+              <SortComponents currentSort={currentSort} onSort={onSortClick} />
               <OffersList
                 offers={offers}
                 onListStateChange={handleOffersListAtiveId}

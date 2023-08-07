@@ -8,7 +8,12 @@ export enum AppRoute {
   Favorites = '/favorites',
   Offer = '/offer/',
 }
-
+export enum SortTypeName {
+  Popular = 'Popular',
+  LtH = 'Price: low to high',
+  HtL = 'Price: high to low',
+  TopRated = 'Top rated first',
+}
 export const starInputsData = [
   { value: 5, title: 'perfect' },
   { value: 4, title: 'good' },
