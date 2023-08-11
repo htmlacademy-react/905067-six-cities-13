@@ -11,7 +11,7 @@ function CitiesList({
   onClickCity,
   currentCity,
 }: CitiesListProps): JSX.Element {
-  
+
   return (
     <section className="locations container">
       <ul className="locations__list tabs__list">

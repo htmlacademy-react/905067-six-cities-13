@@ -39,7 +39,7 @@ const Main = () => {
   useEffect(() => {
     dispatch(showOffers(currentCity));
   }, [currentCity, dispatch]);
-  
+
   return (
     <div className="page page--gray page--main">
       <header className="header">
