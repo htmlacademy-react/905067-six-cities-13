@@ -10,8 +10,8 @@ export enum AppRoute {
 }
 export enum SortTypeName {
   Popular = 'Popular',
-  LtH = 'Price: low to high',
-  HtL = 'Price: high to low',
+  LowToHigh = 'Price: low to high',
+  HighToLow = 'Price: high to low',
   TopRated = 'Top rated first',
 }
 export const starInputsData = [

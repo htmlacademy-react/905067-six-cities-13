@@ -13,24 +13,33 @@ import SortComponents from '../../components/sort/sort';
 
 const Main = () => {
   const [offersListactiveId, setOffersListActiveId] = useState<string>('0');
+
   const handleOffersListAtiveId = (activeId: string) => {
     setOffersListActiveId(activeId);
   };
+
   const offers = useAppSelector((state) => state.displayedOffers);
+
   const currentCity = useAppSelector((state) => state.city);
+
   const currentSort = useAppSelector((state) => state.currentSort);
+
   const dispatch = useAppDispatch();
+
   const onCityClick = (city: City) => {
     dispatch(changeCity(city));
     dispatch(showOffers(city));
   };
+
   const onSortClick = (sortType: string) => {
     dispatch(changeSort(sortType));
     dispatch(showOffers(currentCity));
   };
+
   useEffect(() => {
     dispatch(showOffers(currentCity));
   }, [currentCity, dispatch]);
+  
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -68,7 +77,7 @@ const Main = () => {
           <title>6 cities</title>
         </Helmet>
         <h1 className="visually-hidden">Cities</h1>
-        <CitiesList currentCity={currentCity} onCity={onCityClick} />
+        <CitiesList currentCity={currentCity} onClickCity={onCityClick} />
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
