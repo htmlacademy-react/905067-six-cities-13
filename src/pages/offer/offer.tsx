@@ -184,7 +184,7 @@ const Offer = ({ offers }: OfferProp) => {
           </div>
           <Map
             offers={[offers[0], offers[1], offers[2]]}
-            city={CITY}
+            city={CITY.amsterdam}
             isMainPage={false}
           />
         </section>
