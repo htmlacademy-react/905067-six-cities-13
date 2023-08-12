@@ -3,6 +3,6 @@ import { City } from '../types/types';
 
 export const changeCity = createAction<City>('app/changeCity');
 
-export const showOffers = createAction<City>('app/loadOffers');
+export const showOffers = createAction('app/loadOffers');
 
 export const changeSort = createAction<string>('app/changeSort');
