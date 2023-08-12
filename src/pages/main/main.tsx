@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { AppRoute } from '../../const';
 import Map from '../../components/map/map';
-import CitiesList from '../../components/citiesList/citiesList';
+import CitiesList from '../../components/cities-list/cities-list';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { City } from '../../types/types';
 import { changeCity, showOffers, changeSort } from '../../store/action';
@@ -28,16 +28,16 @@ const Main = () => {
 
   const onCityClick = (city: City) => {
     dispatch(changeCity(city));
-    dispatch(showOffers(city));
+    dispatch(showOffers());
   };
 
   const onSortClick = (sortType: string) => {
     dispatch(changeSort(sortType));
-    dispatch(showOffers(currentCity));
+    dispatch(showOffers());
   };
 
   useEffect(() => {
-    dispatch(showOffers(currentCity));
+    dispatch(showOffers());
   }, [currentCity, dispatch]);
 
   return (

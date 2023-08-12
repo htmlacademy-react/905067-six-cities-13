@@ -22,10 +22,8 @@ const reducer = createReducer(initialState, (builder) => {
       const sortType = action.payload;
       state.currentSort = sortType;
     })
-    .addCase(showOffers, (state, action) => {
-      const city = action.payload;
-      const { currentSort } = state;
-      state.offers = offers;
+    .addCase(showOffers, (state) => {
+      const { currentSort, city, offers } = state;
       state.displayedOffers = offersSort(offers, city.name, currentSort);
     });
 });
