@@ -10,7 +10,7 @@ export type Offer = {
   price: number;
   additional: string[];
   city: string;
-  cordinates: number[];
+  cordinates: { latitude: number; longitude: number; zoom: number };
 };
 
 export type Offers = Offer[];

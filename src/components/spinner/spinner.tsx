@@ -1,0 +1,11 @@
+import './spinner.css';
+
+const Spinner = () => {
+  return (
+    <div className="loading-container">
+      <div className="loading"></div>
+    </div>
+  );
+};
+
+export default Spinner;

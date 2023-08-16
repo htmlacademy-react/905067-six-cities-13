@@ -36,10 +36,6 @@ const Main = () => {
     dispatch(showOffers());
   };
 
-  useEffect(() => {
-    dispatch(showOffers());
-  }, [currentCity, dispatch]);
-
   return (
     <div className="page page--gray page--main">
       <header className="header">

@@ -31,7 +31,7 @@ const Map = ({ city, offers, activeId, isMainPage }: MapProps) => {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
       offers.forEach((offer) => {
-        const [lat, lng] = offer.cordinates;
+        const {latitude:lat, longitude:lng} = offer.cordinates;
         const marker = new Marker({ lat, lng });
         marker
           .setIcon(
