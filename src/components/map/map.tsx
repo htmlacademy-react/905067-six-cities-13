@@ -4,12 +4,12 @@ import { Icon, Marker, layerGroup } from 'leaflet';
 import { City } from '../../types/types';
 import useMap from '../../hooks/use-map';
 import 'leaflet/dist/leaflet.css';
-import { Offers } from '../../types/offers';
+import { FullOffer, Offers } from '../../types/offers';
 import cn from 'classnames';
 
 type MapProps = {
   city: City;
-  offers: Offers;
+  offers: Offers | FullOffer[];
   activeId?: string;
   isMainPage: boolean;
 };

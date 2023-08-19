@@ -86,3 +86,5 @@ export const CITY = {
     },
   },
 };
+
+export const StarRatingProportion = 0.05;

@@ -7,7 +7,6 @@ import Favorites from '../../pages/favorites/favorites';
 import Offer from '../../pages/offer/offer';
 import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
-import { Offers } from '../../types/offers';
 import { useAppSelector } from '../../hooks';
 import Spinner from '../spinner/spinner';
 
@@ -15,9 +14,10 @@ const App = () => {
   const isOffersDataLoading = useAppSelector(
     (state) => state.isOffersDataLoading
   );
+  const isAuth = useAppSelector((state) => state.authorizationStatus);
+  const offers = useAppSelector((state) => state.offers);
 
   if (isOffersDataLoading) {
-    console.log(isOffersDataLoading);
     return <Spinner />;
   }
 
@@ -27,18 +27,15 @@ const App = () => {
         <Routes>
           <Route path={AppRoute.Root} element={<Main />} />
           <Route path={AppRoute.Login} element={<Login />} />
-          {/* <Route
+          <Route
             path={AppRoute.Favorites}
             element={
-              <PrivateRoute isAuth>
+              <PrivateRoute isAuth={isAuth}>
                 <Favorites offers={offers} />
               </PrivateRoute>
             }
           />
-          <Route
-            path={`${AppRoute.Offer}:id`}
-            element={<Offer offers={offers} />}
-          /> */}
+          <Route path={`${AppRoute.Offer}:id`} element={<Offer />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

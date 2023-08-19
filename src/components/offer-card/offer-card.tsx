@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { AppRoute, StarRatingProportion } from '../../const';
 import { Offer } from '../../types/offers';
 import cn from 'classnames';
 
@@ -11,6 +11,8 @@ type OfferCardProps = {
 
 const OfferCard = ({ offer, handleHover, isMainPage }: OfferCardProps) => {
   const { id, premium, src, title, offerType, price, rating } = offer;
+
+  const starRating = `${Math.round(rating) / StarRatingProportion}%`;
 
   return (
     <article
@@ -61,7 +63,7 @@ const OfferCard = ({ offer, handleHover, isMainPage }: OfferCardProps) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: rating }} />
+            <span style={{ width: starRating }} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

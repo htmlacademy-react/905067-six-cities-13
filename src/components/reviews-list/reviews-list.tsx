@@ -8,7 +8,7 @@ type ReviewsListProps = {
 const ReviewsList = ({ comments }: ReviewsListProps) => (
   <ul className="reviews__list">
     {comments.map((comment) => (
-      <Review comment={comment} key={comment.id} />
+      <Review commentData={comment} key={comment.id} />
     ))}
   </ul>
 );
