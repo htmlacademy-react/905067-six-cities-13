@@ -7,10 +7,7 @@ type SortComponentsProps = {
   onSort: (currentSort: string) => void;
 };
 
-export default function SortComponents({
-  onSort,
-  currentSort,
-}: SortComponentsProps): JSX.Element {
+const SortComponents = ({ onSort, currentSort }: SortComponentsProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const handleToggle = () => setIsOpen(!isOpen);
   const handleSort = (sortType: string) => onSort(sortType);
@@ -72,4 +69,6 @@ export default function SortComponents({
       </ul>
     </form>
   );
-}
+};
+
+export default SortComponents;

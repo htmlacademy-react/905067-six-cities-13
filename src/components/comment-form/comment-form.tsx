@@ -1,12 +1,58 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import StarInput from '../star-input/star-input';
 import { starInputsData } from '../../const';
+import { useAppDispatch } from '../../hooks';
+import { postCommentAction } from '../../store/api-actions';
 
-const CommentForm = () => {
+type CommentFormProps = {
+  isAuth: boolean;
+  offerId?: string;
+};
+
+const CommentForm = ({ isAuth, offerId }: CommentFormProps) => {
   const [commentText, setCommentText] = useState('');
   const [commentRate, setCommentRate] = useState('');
+  const [isBlocked, setBlock] = useState(false);
+  const dispatch = useAppDispatch();
+  const [isValid, setValid] = useState(false);
+  const clearComment = () => {
+    setCommentText('');
+    setCommentRate('0');
+  };
+  const unblockForm = () => {
+    setBlock(false);
+  };
+  const onFormSubmit = (evt: FormEvent) => {
+    if (offerId) {
+      evt.preventDefault();
+      setBlock(true);
+      dispatch(
+        postCommentAction({
+          comment: {
+            comment: commentText,
+            rating: parseInt(commentRate, 10),
+          },
+          offerId: offerId,
+          clearComment: clearComment,
+          unblockForm: unblockForm,
+        })
+      );
+    }
+  };
+  if (commentText.length >= 50 && commentRate && !isValid) {
+    setValid(true);
+  }
+  if (!isAuth) {
+    return <h2 style={{ textAlign: 'center' }}>Login to add comments!</h2>;
+  }
+
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form
+      className="reviews__form form"
+      action="#"
+      method="post"
+      onSubmit={onFormSubmit}
+    >
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
@@ -19,6 +65,7 @@ const CommentForm = () => {
               id={`${value}-stars`}
               checkValue={value.toString()}
               title={title}
+              disabled={isBlocked}
               commentRate={commentRate}
               setCommentRate={setCommentRate}
               key={value}
@@ -33,6 +80,7 @@ const CommentForm = () => {
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
+        disabled={isBlocked}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
@@ -43,7 +91,7 @@ const CommentForm = () => {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled
+          disabled={isBlocked || !isValid}
         >
           Submit
         </button>

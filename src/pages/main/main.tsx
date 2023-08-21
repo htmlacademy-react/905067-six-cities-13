@@ -1,15 +1,14 @@
-import Logo from '../../components/logo/logo';
 import OffersList from '../../components/offers-list/offers-list';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { AppRoute } from '../../const';
+import { useState } from 'react';
+
 import Map from '../../components/map/map';
 import CitiesList from '../../components/cities-list/cities-list';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { City } from '../../types/types';
-import { changeCity, showOffers, changeSort } from '../../store/action';
+import { changeCity, changeSort, sortOffers } from '../../store/action';
 import SortComponents from '../../components/sort/sort';
+import Header from '../../components/header/header';
 
 const Main = () => {
   const [offersListactiveId, setOffersListActiveId] = useState<string>('0');
@@ -28,50 +27,17 @@ const Main = () => {
 
   const onCityClick = (city: City) => {
     dispatch(changeCity(city));
-    dispatch(showOffers());
+    dispatch(sortOffers());
   };
 
   const onSortClick = (sortType: string) => {
     dispatch(changeSort(sortType));
-    dispatch(showOffers());
+    dispatch(sortOffers());
   };
-
-  useEffect(() => {
-    dispatch(showOffers());
-  }, [currentCity, dispatch]);
 
   return (
     <div className="page page--gray page--main">
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <Logo />
-            </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <Link
-                    to={AppRoute.Favorites}
-                    className="header__nav-link header__nav-link--profile"
-                  >
-                    <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                    <span className="header__user-name user__name">
-                      Oliver.conner@gmail.com
-                    </span>
-                    <span className="header__favorite-count">3</span>
-                  </Link>
-                </li>
-                <li className="header__nav-item">
-                  <Link to={AppRoute.Login} className="header__nav-link">
-                    <span className="header__signout">Sign out</span>
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <Header />
       <main className="page__main page__main--index">
         <Helmet>
           <title>6 cities</title>

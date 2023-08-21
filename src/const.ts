@@ -14,6 +14,15 @@ export enum SortTypeName {
   HighToLow = 'Price: high to low',
   TopRated = 'Top rated first',
 }
+
+export enum APIRoute {
+  Offers = '/offers',
+  Login = '/login',
+  Logout = '/logout',
+  Comments = '/comments',
+  Favorites = '/favorite',
+}
+
 export const starInputsData = [
   { value: 5, title: 'perfect' },
   { value: 4, title: 'good' },
@@ -77,3 +86,5 @@ export const CITY = {
     },
   },
 };
+
+export const StarRatingProportion = 0.05;

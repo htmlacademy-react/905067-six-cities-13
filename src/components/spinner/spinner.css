@@ -1,0 +1,21 @@
+.loading-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30%;
+}
+
+.loading {
+  pointer-events: none;
+  width: 10.5em;
+  height: 10.5em;
+  border: 0.4em solid transparent;
+  border-color: #eee;
+  border-top-color: #3e67ec;
+  border-radius: 50%;
+  animation: loadingspin 1s linear infinite;
+}
+@keyframes loadingspin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

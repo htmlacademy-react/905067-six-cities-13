@@ -6,6 +6,7 @@ type StartInputProps = {
   checkValue: string;
   title: string;
   commentRate: string;
+  disabled: boolean;
   setCommentRate: (value: string) => void;
 };
 
@@ -16,6 +17,7 @@ const StarInput = ({
   title,
   commentRate,
   setCommentRate,
+  disabled,
 }: StartInputProps) => (
   <Fragment>
     <input
@@ -25,6 +27,7 @@ const StarInput = ({
       id={id}
       type="radio"
       onChange={(e) => setCommentRate(e.target.value)}
+      disabled={disabled}
       checked={commentRate === checkValue}
     />
     <label

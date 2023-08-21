@@ -7,36 +7,39 @@ import Favorites from '../../pages/favorites/favorites';
 import Offer from '../../pages/offer/offer';
 import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
-import { Offers } from '../../types/offers';
+import { useAppSelector } from '../../hooks';
+import Spinner from '../spinner/spinner';
 
-type AppProps = {
-  offers: Offers;
+const App = () => {
+  const isOffersDataLoading = useAppSelector(
+    (state) => state.isOffersDataLoading
+  );
+  const isAuth = useAppSelector((state) => state.authorizationStatus);
+  const offers = useAppSelector((state) => state.offers);
+
+  if (isOffersDataLoading) {
+    return <Spinner />;
+  }
+
+  return (
+    <HelmetProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path={AppRoute.Root} element={<Main />} />
+          <Route path={AppRoute.Login} element={<Login />} />
+          <Route
+            path={AppRoute.Favorites}
+            element={
+              <PrivateRoute isAuth={isAuth}>
+                <Favorites offers={offers} />
+              </PrivateRoute>
+            }
+          />
+          <Route path={`${AppRoute.Offer}:id`} element={<Offer />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
+  );
 };
-
-const App = ({ offers }: AppProps) => (
-  <HelmetProvider>
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path={AppRoute.Root}
-          element={<Main />}
-        />
-        <Route path={AppRoute.Login} element={<Login />} />
-        <Route
-          path={AppRoute.Favorites}
-          element={
-            <PrivateRoute isAuth>
-              <Favorites offers={offers} />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path={`${AppRoute.Offer }:id`}
-          element={<Offer offers={offers} />}
-        />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
-  </HelmetProvider>
-);
 export default App;

@@ -4,12 +4,12 @@ import { Icon, Marker, layerGroup } from 'leaflet';
 import { City } from '../../types/types';
 import useMap from '../../hooks/use-map';
 import 'leaflet/dist/leaflet.css';
-import { Offers } from '../../types/offers';
+import { FullOffer, Offers } from '../../types/offers';
 import cn from 'classnames';
 
 type MapProps = {
   city: City;
-  offers: Offers;
+  offers: Offers | FullOffer[];
   activeId?: string;
   isMainPage: boolean;
 };
@@ -31,7 +31,7 @@ const Map = ({ city, offers, activeId, isMainPage }: MapProps) => {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
       offers.forEach((offer) => {
-        const [lat, lng] = offer.cordinates;
+        const {latitude:lat, longitude:lng} = offer.cordinates;
         const marker = new Marker({ lat, lng });
         marker
           .setIcon(
