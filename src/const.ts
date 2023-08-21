@@ -7,6 +7,7 @@ export enum AppRoute {
   Root = '/',
   Favorites = '/favorites',
   Offer = '/offer/',
+  NotFound='/*',
 }
 export enum SortTypeName {
   Popular = 'Popular',

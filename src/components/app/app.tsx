@@ -1,4 +1,4 @@
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { HelmetProvider } from 'react-helmet-async';
 import Main from '../../pages/main/main';
@@ -9,6 +9,8 @@ import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
 import { useAppSelector } from '../../hooks';
 import Spinner from '../spinner/spinner';
+import HistoryRouter from '../history-route/history-route';
+import browserHistory from '../../services/browser-history';
 
 const App = () => {
   const isOffersDataLoading = useAppSelector(
@@ -23,7 +25,7 @@ const App = () => {
 
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <HistoryRouter history={browserHistory}>
         <Routes>
           <Route path={AppRoute.Root} element={<Main />} />
           <Route path={AppRoute.Login} element={<Login />} />
@@ -38,7 +40,7 @@ const App = () => {
           <Route path={`${AppRoute.Offer}:id`} element={<Offer />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
+      </HistoryRouter>
     </HelmetProvider>
   );
 };
