@@ -5,7 +5,7 @@ import { Comment, Comments } from '../types/comments';
 
 export const changeCity = createAction<City>('app/changeCity');
 
-export const showOffers = createAction('app/showOffers');
+export const sortOffers = createAction('app/sortOffers');
 
 export const changeSort = createAction<string>('app/changeSort');
 
@@ -21,10 +21,10 @@ export const setAuthorizationStatus = createAction<boolean>(
 
 export const setUserName = createAction<string>('app/setUserName');
 
-export const getOffer = createAction<FullOffer>('app/getOffer');
+export const setOffer = createAction<FullOffer>('app/setOffer');
 
-export const getNearbyOffers = createAction<Offers>('app/getNearbyOffers');
+export const setNearbyOffers = createAction<Offers>('app/setNearbyOffers');
 
-export const getOfferComments = createAction<Comments>('app/getOfferComments');
+export const setOfferComments = createAction<Comments>('app/setOfferComments');
 
 export const postComment = createAction<Comment>('app/postComment');

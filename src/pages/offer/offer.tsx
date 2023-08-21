@@ -69,7 +69,7 @@ const Offer = () => {
   const starRating = `${Math.round(rating) / StarRatingProportion}%`;
   return (
     <div className="page">
-      <Header isAuth={isAuth} />
+      <Header />
       <main className="page__main page__main--offer">
         <section className="offer">
           <Helmet>

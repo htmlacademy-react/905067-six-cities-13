@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import StarInput from '../star-input/star-input';
 import { starInputsData } from '../../const';
 import { useAppDispatch } from '../../hooks';
@@ -14,45 +14,44 @@ const CommentForm = ({ isAuth, offerId }: CommentFormProps) => {
   const [commentRate, setCommentRate] = useState('');
   const [isBlocked, setBlock] = useState(false);
   const dispatch = useAppDispatch();
-
-  let isValid = true;
-  if (commentText.length >= 50 && commentRate) {
-    isValid = false;
+  const [isValid, setValid] = useState(false);
+  const clearComment = () => {
+    setCommentText('');
+    setCommentRate('0');
+  };
+  const unblockForm = () => {
+    setBlock(false);
+  };
+  const onFormSubmit = (evt: FormEvent) => {
+    if (offerId) {
+      evt.preventDefault();
+      setBlock(true);
+      dispatch(
+        postCommentAction({
+          comment: {
+            comment: commentText,
+            rating: parseInt(commentRate, 10),
+          },
+          offerId: offerId,
+          clearComment: clearComment,
+          unblockForm: unblockForm,
+        })
+      );
+    }
+  };
+  if (commentText.length >= 50 && commentRate && !isValid) {
+    setValid(true);
   }
   if (!isAuth) {
     return <h2 style={{ textAlign: 'center' }}>Login to add comments!</h2>;
   }
 
-  function clearComment() {
-    setCommentText('');
-    setCommentRate('0');
-  }
-
-  function unblockForm() {
-    setBlock(false);
-  }
   return (
     <form
       className="reviews__form form"
       action="#"
       method="post"
-      onSubmit={(evt) => {
-        if (offerId) {
-          evt.preventDefault();
-          setBlock(true);
-          dispatch(
-            postCommentAction({
-              comment: {
-                comment: commentText,
-                rating: parseInt(commentRate, 10),
-              },
-              offerId: offerId,
-              clearComment: clearComment,
-              unblockForm: unblockForm,
-            })
-          );
-        }
-      }}
+      onSubmit={onFormSubmit}
     >
       <label className="reviews__label form__label" htmlFor="review">
         Your review
@@ -92,7 +91,7 @@ const CommentForm = ({ isAuth, offerId }: CommentFormProps) => {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={isBlocked || isValid}
+          disabled={isBlocked || !isValid}
         >
           Submit
         </button>

@@ -5,12 +5,12 @@ import {
   changeSort,
   loadOffers,
   setOffersDataLoadingStatus,
-  showOffers,
+  sortOffers,
   setAuthorizationStatus,
   setUserName,
-  getOffer,
-  getNearbyOffers,
-  getOfferComments,
+  setOffer,
+  setNearbyOffers,
+  setOfferComments,
   postComment,
 } from './action';
 import { FullOffer, Offers } from '../types/offers';
@@ -63,20 +63,20 @@ const reducer = createReducer(initialState, (builder) => {
       const sortType = action.payload;
       state.currentSort = sortType;
     })
-    .addCase(showOffers, (state) => {
+    .addCase(sortOffers, (state) => {
       const { currentSort, city, offers } = state;
       state.displayedOffers = offersSort(offers, city.name, currentSort);
     })
-    .addCase(getOffer, (state, action) => {
+    .addCase(setOffer, (state, action) => {
       state.currentOffer = action.payload;
     })
-    .addCase(getNearbyOffers, (state, action) => {
+    .addCase(setNearbyOffers, (state, action) => {
       state.nearbyOffers = action.payload;
     })
     .addCase(setUserName, (state, action) => {
       state.userName = action.payload;
     })
-    .addCase(getOfferComments, (state, action) => {
+    .addCase(setOfferComments, (state, action) => {
       state.offerComments = action.payload;
     })
     .addCase(postComment, (state, action) => {

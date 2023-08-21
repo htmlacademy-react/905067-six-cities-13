@@ -6,7 +6,7 @@ import Map from '../../components/map/map';
 import CitiesList from '../../components/cities-list/cities-list';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { City } from '../../types/types';
-import { changeCity, showOffers, changeSort } from '../../store/action';
+import { changeCity, changeSort, sortOffers } from '../../store/action';
 import SortComponents from '../../components/sort/sort';
 import Header from '../../components/header/header';
 
@@ -23,23 +23,21 @@ const Main = () => {
 
   const currentSort = useAppSelector((state) => state.currentSort);
 
-  const isAuth = useAppSelector((state) => state.authorizationStatus);
-
   const dispatch = useAppDispatch();
 
   const onCityClick = (city: City) => {
     dispatch(changeCity(city));
-    dispatch(showOffers());
+    dispatch(sortOffers());
   };
 
   const onSortClick = (sortType: string) => {
     dispatch(changeSort(sortType));
-    dispatch(showOffers());
+    dispatch(sortOffers());
   };
 
   return (
     <div className="page page--gray page--main">
-      <Header isAuth={isAuth} />
+      <Header />
       <main className="page__main page__main--index">
         <Helmet>
           <title>6 cities</title>

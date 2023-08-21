@@ -1,8 +1,8 @@
-import { FullOffer, Offer, Offers } from './types/offers';
-/* eslint-disable */
-const offersAdapter = (offers: any): Offers =>
+import { FullOffer, FullOfferServer, Offer, OfferServer, Offers, OffersSever } from './types/offers';
+
+const offersAdapter = (offers: OffersSever): Offers =>
   offers.map(
-    (offer: any): Offer => ({
+    (offer: OfferServer): Offer => ({
       id: offer.id,
       src: offer.previewImage,
       title: offer.title,
@@ -15,7 +15,7 @@ const offersAdapter = (offers: any): Offers =>
     })
   );
 
-const offerAdapter = (offer: any): FullOffer => ({
+const offerAdapter = (offer: FullOfferServer): FullOffer => ({
   id: offer.id,
   images: offer.images,
   description: offer.description,

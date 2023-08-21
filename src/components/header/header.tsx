@@ -2,11 +2,7 @@ import Logo from '../logo/logo';
 import HeaderLogin from '../header-login/header-login';
 import { useAppSelector } from '../../hooks';
 
-type HeaderProps = {
-  isAuth: boolean;
-};
-
-const Header = ({ isAuth }: HeaderProps) => {
+const Header = () => {
   const userName = useAppSelector((state) => state.userName);
   return (
     <header className="header">
@@ -15,7 +11,7 @@ const Header = ({ isAuth }: HeaderProps) => {
           <div className="header__left">
             <Logo />
           </div>
-          <HeaderLogin isAuth={isAuth} userName={userName} />
+          <HeaderLogin userName={userName} />
         </div>
       </div>
     </header>
