@@ -36,19 +36,12 @@ const Offer = () => {
 
   const nearbyOffers = useAppSelector((state) => state.nearbyOffers);
 
-  const offers = useAppSelector((state) => state.offers);
-
   const shufledOffers = [...nearbyOffers]
     .sort(() => 0.5 - Math.random())
     .slice(0, 3);
 
   const mapOffers = [...shufledOffers];
 
-  const currentOffer = offers.find((o: { id: string }) => o.id === id);
-
-  if (currentOffer) {
-    mapOffers.push(currentOffer);
-  }
   if (!offer) {
     return <Spinner />;
   }
@@ -180,6 +173,7 @@ const Offer = () => {
             city={city}
             isMainPage={false}
             activeId={offer.id}
+            fullOffer={offer}
           />
         </section>
         <div className="container">

@@ -9,9 +9,10 @@ import cn from 'classnames';
 
 type MapProps = {
   city: City;
-  offers: Offers | FullOffer[];
+  offers: Offers;
   activeId?: string;
   isMainPage: boolean;
+  fullOffer?: FullOffer;
 };
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -24,14 +25,14 @@ const currentCustomIcon = new Icon({
   iconSize: [40, 40],
   iconAnchor: [20, 40],
 });
-const Map = ({ city, offers, activeId, isMainPage }: MapProps) => {
+const Map = ({ city, offers, activeId, isMainPage, fullOffer }: MapProps) => {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
   useEffect(() => {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
       offers.forEach((offer) => {
-        const {latitude:lat, longitude:lng} = offer.cordinates;
+        const { latitude: lat, longitude: lng } = offer.cordinates;
         const marker = new Marker({ lat, lng });
         marker
           .setIcon(
@@ -41,12 +42,23 @@ const Map = ({ city, offers, activeId, isMainPage }: MapProps) => {
           )
           .addTo(markerLayer);
       });
+      if (fullOffer) {
+        const { latitude: lat, longitude: lng } = fullOffer.cordinates;
+        const marker = new Marker({ lat, lng });
+        marker
+          .setIcon(
+            activeId !== undefined && activeId === fullOffer.id
+              ? currentCustomIcon
+              : defaultCustomIcon
+          )
+          .addTo(markerLayer);
+      }
 
       return () => {
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, offers, activeId]);
+  }, [map, offers, activeId, fullOffer]);
   return (
     <section
       ref={mapRef}
