@@ -9,7 +9,6 @@ const Review = ({ commentData }: ReviewProps) => {
   const { comment, date, rating, user } = commentData;
   const { avatarUrl, name } = user;
   const starRating = `${Math.round(rating) / StarRatingProportion}%`;
-
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
@@ -32,8 +31,10 @@ const Review = ({ commentData }: ReviewProps) => {
           </div>
         </div>
         <p className="reviews__text">{comment}</p>
-        <time className="reviews__time" dateTime="2019-04-24">
-          {date}
+        <time className="reviews__time" dateTime={date}>
+          {` ${new Date(date).toLocaleString('en-GB', {
+            month: 'long',
+          })}  ${new Date(date).getFullYear()}`}
         </time>
       </div>
     </li>

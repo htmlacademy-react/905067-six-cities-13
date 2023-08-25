@@ -18,6 +18,7 @@ const CommentForm = ({ isAuth, offerId }: CommentFormProps) => {
   const clearComment = () => {
     setCommentText('');
     setCommentRate('0');
+    setValid(false);
   };
   const unblockForm = () => {
     setBlock(false);

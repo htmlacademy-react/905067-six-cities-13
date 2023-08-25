@@ -89,3 +89,10 @@ export const CITY = {
 };
 
 export const StarRatingProportion = 0.05;
+
+export enum NameSpace {
+  Data = 'DATA',
+  App = 'APP',
+  User = 'USER',
+  Favorites= 'FAVORITES'
+}

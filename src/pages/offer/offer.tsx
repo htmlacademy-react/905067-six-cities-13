@@ -14,6 +14,15 @@ import {
 } from '../../store/api-actions';
 import Spinner from '../../components/spinner/spinner';
 import Header from '../../components/header/header';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import {
+  getCurrentOffer,
+  getNearbyOffers,
+  getOfferComments,
+} from '../../store/app-data/selectors';
+import BookmarkButton from '../../components/bookmark-button/bookmark-button';
+
+import cn from 'classnames';
 
 const Offer = () => {
   const { id } = useParams();
@@ -28,13 +37,13 @@ const Offer = () => {
     }
   }, [id, dispatch]);
 
-  const offer = useAppSelector((state) => state.currentOffer);
+  const offer = useAppSelector(getCurrentOffer);
 
-  const isAuth = useAppSelector((state) => state.authorizationStatus);
+  const isAuth = useAppSelector(getAuthorizationStatus);
 
-  const offerComments = useAppSelector((state) => state.offerComments);
+  const offerComments = useAppSelector(getOfferComments);
 
-  const nearbyOffers = useAppSelector((state) => state.nearbyOffers);
+  const nearbyOffers = useAppSelector(getNearbyOffers);
 
   const shufledOffers = [...nearbyOffers]
     .sort(() => 0.5 - Math.random())
@@ -58,6 +67,7 @@ const Offer = () => {
     bedrooms,
     maxAdults,
     host,
+    isFavorite,
   } = offer;
   const starRating = `${Math.round(rating) / StarRatingProportion}%`;
   return (
@@ -90,12 +100,7 @@ const Offer = () => {
               )}
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">{title}</h1>
-                <button className="offer__bookmark-button button" type="button">
-                  <svg className="offer__bookmark-icon" width={31} height={33}>
-                    <use xlinkHref="#icon-bookmark" />
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <BookmarkButton favorite={isFavorite} id={offer.id} />
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
@@ -127,10 +132,7 @@ const Offer = () => {
                   {goods.map((item: string, i: number) => {
                     const index = i;
                     return (
-                      <li
-                        className="offer__inside-item"
-                        key={item.length * index}
-                      >
+                      <li className="offer__inside-item" key={index * 2}>
                         {item}
                       </li>
                     );
@@ -140,7 +142,15 @@ const Offer = () => {
               <div className="offer__host">
                 <h2 className="offer__host-title">Meet the host</h2>
                 <div className="offer__host-user user">
-                  <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
+                  <div
+                    className={cn(
+                      'offer__avatar-wrapper',
+                      {
+                        'offer__avatar-wrapper--pro': host.isPro,
+                      },
+                      'user__avatar-wrapper'
+                    )}
+                  >
                     <img
                       className="offer__avatar user__avatar"
                       src={host.avatarUrl}
@@ -150,7 +160,9 @@ const Offer = () => {
                     />
                   </div>
                   <span className="offer__user-name">{host.name}</span>
-                  <span className="offer__user-status">Pro</span>
+                  {host.isPro && (
+                    <span className="offer__user-status">Pro</span>
+                  )}
                 </div>
                 <div className="offer__description">
                   <p className="offer__text">{description}</p>

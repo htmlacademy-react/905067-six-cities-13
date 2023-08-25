@@ -4,11 +4,13 @@ import { Navigate } from 'react-router-dom';
 import { useRef, FormEvent } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { getCity } from '../../store/app-process/selectors';
 
 const Login = () => {
-  const isAuth = useAppSelector((state) => state.authorizationStatus);
+  const isAuth = useAppSelector(getAuthorizationStatus);
 
-  const city = useAppSelector((state) => state.city.name);
+  const city = useAppSelector(getCity);
 
   const dispatch = useAppDispatch();
 
@@ -89,7 +91,7 @@ const Login = () => {
           <section className="locations locations--login locations--current">
             <div className="locations__item">
               <a className="locations__item-link" href="#">
-                <span>{city}</span>
+                <span>{city.name}</span>
               </a>
             </div>
           </section>

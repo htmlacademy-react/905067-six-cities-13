@@ -11,13 +11,15 @@ import { useAppSelector } from '../../hooks';
 import Spinner from '../spinner/spinner';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../services/browser-history';
+import { getOffersDataLoadingStatus } from '../../store/app-process/selectors';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 const App = () => {
   const isOffersDataLoading = useAppSelector(
-    (state) => state.isOffersDataLoading
+    getOffersDataLoadingStatus
   );
-  const isAuth = useAppSelector((state) => state.authorizationStatus);
-  const offers = useAppSelector((state) => state.offers);
+  const isAuth = useAppSelector(getAuthorizationStatus);
+
 
   if (isOffersDataLoading) {
     return <Spinner />;
@@ -33,7 +35,7 @@ const App = () => {
             path={AppRoute.Favorites}
             element={
               <PrivateRoute isAuth={isAuth}>
-                <Favorites offers={offers} />
+                <Favorites/>
               </PrivateRoute>
             }
           />

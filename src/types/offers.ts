@@ -9,6 +9,7 @@ export type Offer = {
   offerType: string;
   price: number;
   city: string;
+  favorite: boolean;
   cordinates: { latitude: number; longitude: number; zoom: number };
 };
 
@@ -40,6 +41,7 @@ export type OfferServer = {
   city: City;
   location: { latitude: number; longitude: number; zoom: number };
   isPremium: boolean;
+  isFavorite: boolean;
 };
 
 export type FullOfferServer = {
@@ -61,4 +63,4 @@ export type FullOfferServer = {
 };
 
 export type Offers = Offer[];
-export type OffersSever = OfferServer[];
+export type OffersServer = OfferServer[];

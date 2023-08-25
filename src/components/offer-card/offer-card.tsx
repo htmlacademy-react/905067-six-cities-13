@@ -1,18 +1,39 @@
 import { Link } from 'react-router-dom';
 import { AppRoute, StarRatingProportion } from '../../const';
 import { Offer } from '../../types/offers';
+import { memo, useState } from 'react';
 import cn from 'classnames';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import browserHistory from '../../services/browser-history';
+import { toggleFavoriteAction } from '../../store/api-actions';
 
 type OfferCardProps = {
   offer: Offer;
-  handleHover: (id: string) => void;
+  handleHover?: (id: string) => void | null;
   isMainPage: boolean;
 };
 
 const OfferCard = ({ offer, handleHover, isMainPage }: OfferCardProps) => {
-  const { id, premium, src, title, offerType, price, rating } = offer;
+
+  const isAuth = useAppSelector(getAuthorizationStatus);
+  const { id, premium, src, title, offerType, price, rating, favorite } = offer;
 
   const starRating = `${Math.round(rating) / StarRatingProportion}%`;
+
+  const dispatch = useAppDispatch();
+
+  const [isFavorite, setFavorite] = useState(favorite);
+
+  const onBookmarButtonClick = (evt: React.MouseEvent<HTMLElement>) => {
+    evt.preventDefault();
+    if (!isAuth) {
+      browserHistory.push(AppRoute.Login);
+    }
+    const value = !isFavorite;
+    setFavorite(!isFavorite);
+    dispatch(toggleFavoriteAction({value,id}));
+  };
 
   return (
     <article
@@ -21,7 +42,8 @@ const OfferCard = ({ offer, handleHover, isMainPage }: OfferCardProps) => {
         { 'cities__card': isMainPage },
         'place-card'
       )}
-      onMouseMove={() => handleHover(id)}
+
+      onMouseMove={handleHover ? () => handleHover(id) : undefined}
     >
       {premium && (
         <div className="place-card__mark">
@@ -54,7 +76,10 @@ const OfferCard = ({ offer, handleHover, isMainPage }: OfferCardProps) => {
             <b className="place-card__price-value">€{price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button button" type="button">
+          <button
+            onClick={onBookmarButtonClick}
+            className={`place-card__bookmark-button ${isFavorite && isAuth ? 'place-card__bookmark-button--active' : ''} button`} type="button"
+          >
             <svg className="place-card__bookmark-icon" width={18} height={19}>
               <use xlinkHref="#icon-bookmark" />
             </svg>
@@ -76,4 +101,6 @@ const OfferCard = ({ offer, handleHover, isMainPage }: OfferCardProps) => {
   );
 };
 
-export default OfferCard;
+
+const OfferCardMemo = memo(OfferCard);
+export default OfferCardMemo;
