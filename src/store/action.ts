@@ -9,8 +9,6 @@ export const sortOffers = createAction('app/sortOffers');
 
 export const changeSort = createAction<string>('app/changeSort');
 
-// export const loadOffers = createAction<Offers>('app/loadOffers');
-
 export const setOffersDataLoadingStatus = createAction<boolean>(
   'app/setOffersDataLoadingStatus'
 );
