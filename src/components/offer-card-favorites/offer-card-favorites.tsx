@@ -1,7 +1,7 @@
 import { Offer } from '../../types/offers';
 import { useAppDispatch } from '../../hooks';
 import { toggleFavoriteAction } from '../../store/api-actions';
-import { AppRoute, StarRatingProportion } from '../../const';
+import { AppRoute, STAR_RATING_PROPORTION } from '../../const';
 import { Link } from 'react-router-dom';
 
 type OfferCardFavoritesProps = {
@@ -13,7 +13,7 @@ const OfferCardFavorites = ({ offer }: OfferCardFavoritesProps) => {
   const dispatch = useAppDispatch();
 
   const { premium, src, price, rating, title, offerType,favorite,id } = offer;
-  const starRating = `${Math.round(rating) / StarRatingProportion}%`;
+  const starRating = `${Math.round(rating) / STAR_RATING_PROPORTION}%`;
 
   const onBookmarButtonClick = (evt: React.MouseEvent<HTMLElement>) => {
     evt.preventDefault();

@@ -12,13 +12,13 @@ const initialState: AppData = {
   currentOffer: null,
   nearbyOffers: [],
   offerComments: [],
+  commentPostError: false,
 };
 
 export const appData = createSlice({
   name: NameSpace.Data,
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers(builder) {
     builder
       .addCase(getOfferAction.fulfilled, (state, action) => {
@@ -30,9 +30,15 @@ export const appData = createSlice({
       .addCase(getOfferCommentsAction.fulfilled, (state, action) => {
         state.offerComments = action.payload;
       })
+      .addCase(postCommentAction.pending, (state) => {
+        state.commentPostError = false;
+      })
       .addCase(postCommentAction.fulfilled, (state, action) => {
         state.offerComments.push(action.payload);
+        state.commentPostError = false;
+      })
+      .addCase(postCommentAction.rejected, (state) => {
+        state.commentPostError = true;
       });
   },
 });
-

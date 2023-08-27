@@ -7,7 +7,7 @@ export enum AppRoute {
   Root = '/',
   Favorites = '/favorites',
   Offer = '/offer/',
-  NotFound='/*',
+  NotFound = '/*',
 }
 export enum SortTypeName {
   Popular = 'Popular',
@@ -88,11 +88,13 @@ export const CITY = {
   },
 };
 
-export const StarRatingProportion = 0.05;
+export const STAR_RATING_PROPORTION = 0.05;
 
 export enum NameSpace {
   Data = 'DATA',
   App = 'APP',
   User = 'USER',
-  Favorites= 'FAVORITES'
+  Favorites = 'FAVORITES',
 }
+
+export const COMMENT_MIN_LENGTH = 50;

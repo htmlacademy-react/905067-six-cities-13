@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import Map from '../../components/map/map';
-import { StarRatingProportion } from '../../const';
+import { STAR_RATING_PROPORTION } from '../../const';
 import OffersList from '../../components/offers-list/offers-list';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
@@ -69,7 +69,7 @@ const Offer = () => {
     host,
     isFavorite,
   } = offer;
-  const starRating = `${Math.round(rating) / StarRatingProportion}%`;
+  const starRating = `${Math.round(rating) / STAR_RATING_PROPORTION}%`;
   return (
     <div className="page">
       <Header />

@@ -1,4 +1,4 @@
-import { StarRatingProportion } from '../../const';
+import { STAR_RATING_PROPORTION } from '../../const';
 import { Comment } from '../../types/comments';
 
 type ReviewProps = {
@@ -8,7 +8,7 @@ type ReviewProps = {
 const Review = ({ commentData }: ReviewProps) => {
   const { comment, date, rating, user } = commentData;
   const { avatarUrl, name } = user;
-  const starRating = `${Math.round(rating) / StarRatingProportion}%`;
+  const starRating = `${Math.round(rating) / STAR_RATING_PROPORTION}%`;
   return (
     <li className="reviews__item">
       <div className="reviews__user user">

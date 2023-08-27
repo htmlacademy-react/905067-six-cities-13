@@ -23,6 +23,7 @@ export type AppData = {
   currentOffer: FullOffer | null;
   nearbyOffers: Offers;
   offerComments: Comments;
+  commentPostError: boolean;
 };
 
 export type State = ReturnType<typeof store.getState>;

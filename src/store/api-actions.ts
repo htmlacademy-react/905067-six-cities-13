@@ -18,8 +18,10 @@ import { Comment, Comments, PostComment } from '../types/comments';
 import browserHistory from '../services/browser-history';
 
 import { setName } from './user-process/user-process';
-import { setDispalyedOffers, updateDisplayOffer } from './app-process/app-process';
-
+import {
+  setDispalyedOffers,
+  updateDisplayOffer,
+} from './app-process/app-process';
 
 export const fetchOffersAction = createAsyncThunk<
   Offers,
@@ -103,11 +105,18 @@ export const postCommentAction = createAsyncThunk<
 >(
   'data/postComment',
   async ({ comment, offerId, clearComment, unblockForm }, { extra: api }) => {
-    const { data } = await api.post<Comment>(`${APIRoute.Comments}/${offerId}`, comment);
-    clearComment();
-    unblockForm();
-    return data;
-
+    try {
+      const { data } = await api.post<Comment>(
+        `${APIRoute.Comments}/${offerId}`,
+        comment
+      );
+      clearComment();
+      unblockForm();
+      return data;
+    } catch (error) {
+      unblockForm();
+      throw error;
+    }
   }
 );
 
@@ -146,7 +155,7 @@ export const logoutAction = createAsyncThunk<
 });
 
 export const fetchFavOffersAction = createAsyncThunk<
- Offers,
+  Offers,
   undefined,
   {
     dispatch: AppDispatch;
@@ -167,7 +176,7 @@ export const toggleFavoriteAction = createAsyncThunk<
     state: State;
     extra: AxiosInstance;
   }
->('data/toggleFavorites', async ({ value, id }, { dispatch,extra: api }) => {
+>('data/toggleFavorites', async ({ value, id }, { dispatch, extra: api }) => {
   let numVal = 0;
   if (value) {
     numVal = 1;
@@ -175,11 +184,9 @@ export const toggleFavoriteAction = createAsyncThunk<
     numVal = 0;
   }
   const { data } = await api.post<OfferServer>(
-    `${APIRoute.Favorites }/${ id }/${ numVal}`
+    `${APIRoute.Favorites}/${id}/${numVal}`
   );
   const adaptedOffer = favOfferAdapter(data);
   dispatch(updateDisplayOffer(adaptedOffer));
   return adaptedOffer;
 });
-
-

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, StarRatingProportion } from '../../const';
+import { AppRoute, STAR_RATING_PROPORTION } from '../../const';
 import { Offer } from '../../types/offers';
 import { memo, useState } from 'react';
 import cn from 'classnames';
@@ -19,7 +19,7 @@ const OfferCard = ({ offer, handleHover, isMainPage }: OfferCardProps) => {
   const isAuth = useAppSelector(getAuthorizationStatus);
   const { id, premium, src, title, offerType, price, rating, favorite } = offer;
 
-  const starRating = `${Math.round(rating) / StarRatingProportion}%`;
+  const starRating = `${Math.round(rating) / STAR_RATING_PROPORTION}%`;
 
   const dispatch = useAppDispatch();
 
