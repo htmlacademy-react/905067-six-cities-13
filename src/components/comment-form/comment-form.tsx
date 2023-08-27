@@ -3,6 +3,10 @@ import StarInput from '../star-input/star-input';
 import { starInputsData } from '../../const';
 import { useAppDispatch } from '../../hooks';
 import { postCommentAction } from '../../store/api-actions';
+import { COMMENT_MIN_LENGTH } from '../../const';
+import { useAppSelector } from '../../hooks';
+import { getCommentPostError } from '../../store/app-data/selectors';
+import { toast } from 'react-toastify';
 
 type CommentFormProps = {
   isAuth: boolean;
@@ -15,9 +19,11 @@ const CommentForm = ({ isAuth, offerId }: CommentFormProps) => {
   const [isBlocked, setBlock] = useState(false);
   const dispatch = useAppDispatch();
   const [isValid, setValid] = useState(false);
+  const commentPostError = useAppSelector(getCommentPostError);
   const clearComment = () => {
     setCommentText('');
     setCommentRate('0');
+    setValid(false);
   };
   const unblockForm = () => {
     setBlock(false);
@@ -39,9 +45,19 @@ const CommentForm = ({ isAuth, offerId }: CommentFormProps) => {
       );
     }
   };
-  if (commentText.length >= 50 && commentRate && !isValid) {
+  if (commentPostError) {
+    toast.error('There was a problem posting your comment. Please try again.', {
+      toastId: 'postError',
+      autoClose: 3000
+    });
+  }
+  if (commentText.length >= COMMENT_MIN_LENGTH && commentRate && !isValid) {
     setValid(true);
   }
+  if (commentText.length < 50 && isValid) {
+    setValid(false);
+  }
+
   if (!isAuth) {
     return <h2 style={{ textAlign: 'center' }}>Login to add comments!</h2>;
   }

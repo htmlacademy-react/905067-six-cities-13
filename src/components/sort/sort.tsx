@@ -1,5 +1,5 @@
 import { SortTypeName } from '../../const';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import cn from 'classnames';
 
 type SortComponentsProps = {
@@ -71,4 +71,6 @@ const SortComponents = ({ onSort, currentSort }: SortComponentsProps) => {
   );
 };
 
-export default SortComponents;
+
+const SortComponentsMemo = memo(SortComponents , (prev, next) => prev.currentSort === next.currentSort);
+export default SortComponentsMemo;

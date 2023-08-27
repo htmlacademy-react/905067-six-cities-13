@@ -9,14 +9,8 @@ export const sortOffers = createAction('app/sortOffers');
 
 export const changeSort = createAction<string>('app/changeSort');
 
-export const loadOffers = createAction<Offers>('app/loadOffers');
-
 export const setOffersDataLoadingStatus = createAction<boolean>(
   'app/setOffersDataLoadingStatus'
-);
-
-export const setAuthorizationStatus = createAction<boolean>(
-  'app/setAuthorizationStatus'
 );
 
 export const setUserName = createAction<string>('app/setUserName');

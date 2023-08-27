@@ -17,6 +17,10 @@ export type AuthData = {
   login: string;
   password: string;
 };
+export type OfferData = {
+  value: boolean;
+  id: string;
+};
 
 export type UserData = {
   id: number;

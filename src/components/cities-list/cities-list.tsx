@@ -1,5 +1,6 @@
 import { City } from '../../types/types';
 import { CITY } from '../../const';
+import { memo } from 'react';
 import cn from 'classnames';
 
 type CitiesListProps = {
@@ -33,4 +34,6 @@ const CitiesList = ({ onClickCity, currentCity }: CitiesListProps) => (
   </section>
 );
 
-export default CitiesList;
+
+const CitiesListMemo = memo(CitiesList);
+export default CitiesListMemo;
