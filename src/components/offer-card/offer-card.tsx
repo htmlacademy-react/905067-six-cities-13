@@ -43,7 +43,8 @@ const OfferCard = ({ offer, handleHover, isMainPage }: OfferCardProps) => {
         'place-card'
       )}
 
-      onMouseMove={handleHover ? () => handleHover(id) : undefined}
+      onMouseOver={handleHover ? () => handleHover(id) : undefined}
+      onMouseLeave={handleHover ? () => handleHover('') : undefined}
     >
       {premium && (
         <div className="place-card__mark">
@@ -59,7 +60,6 @@ const OfferCard = ({ offer, handleHover, isMainPage }: OfferCardProps) => {
       >
         <Link
           to={AppRoute.Offer + id}
-          className="header__logo-link header__logo-link--active"
         >
           <img
             className="place-card__image"

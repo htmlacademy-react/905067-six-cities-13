@@ -1,3 +1,12 @@
+export type CityList = {
+  paris: City;
+  cologne: City;
+  brussels: City;
+  amsterdam: City;
+  hamburg: City;
+  dusseldorf: City;
+};
+
 export type City = {
   name: string;
   location: {

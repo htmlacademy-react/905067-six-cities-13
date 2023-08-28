@@ -10,12 +10,10 @@ import {
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../types/state';
 import { AuthData, OfferData, TokenData, UserData } from '../types/types';
-import { APIRoute, AppRoute } from '../const';
-
+import { APIRoute } from '../const';
 import { favOfferAdapter, offerAdapter, offersAdapter } from '../adapter';
 import { dropToken, saveToken } from '../services/services';
 import { Comment, Comments, PostComment } from '../types/comments';
-import browserHistory from '../services/browser-history';
 
 import { setName } from './user-process/user-process';
 import {
@@ -38,6 +36,20 @@ export const fetchOffersAction = createAsyncThunk<
   return adaptedOffers;
 });
 
+export const fetchFavOffersAction = createAsyncThunk<
+  Offers,
+  undefined,
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>('data/getFavorites', async (_arg, { extra: api }) => {
+  const { data } = await api.get<OffersServer>(APIRoute.Favorites);
+  const offers = offersAdapter(data);
+  return offers;
+});
+
 export const checkAuthAction = createAsyncThunk<
   TokenData,
   undefined,
@@ -49,8 +61,10 @@ export const checkAuthAction = createAsyncThunk<
 >('data/checkAuth', async (_arg, { dispatch, extra: api }) => {
   const { data } = await api.get<TokenData>(APIRoute.Login);
   dispatch(setName(data.email));
+  dispatch(fetchFavOffersAction());
   return data;
 });
+
 export const getOfferAction = createAsyncThunk<
   FullOffer,
   string,
@@ -135,8 +149,8 @@ export const loginAction = createAsyncThunk<
       data: { token },
     } = await api.post<UserData>(APIRoute.Login, { email, password });
     saveToken(token);
-    browserHistory.push(AppRoute.Root);
     dispatch(setName(email));
+    dispatch(fetchFavOffersAction());
     return email;
   }
 );
@@ -152,20 +166,6 @@ export const logoutAction = createAsyncThunk<
 >('user/logout', async (_arg, { extra: api }) => {
   await api.delete(APIRoute.Logout);
   dropToken();
-});
-
-export const fetchFavOffersAction = createAsyncThunk<
-  Offers,
-  undefined,
-  {
-    dispatch: AppDispatch;
-    state: State;
-    extra: AxiosInstance;
-  }
->('data/getFavorites', async (_arg, { extra: api }) => {
-  const { data } = await api.get<OffersServer>(APIRoute.Favorites);
-  const offers = offersAdapter(data);
-  return offers;
 });
 
 export const toggleFavoriteAction = createAsyncThunk<

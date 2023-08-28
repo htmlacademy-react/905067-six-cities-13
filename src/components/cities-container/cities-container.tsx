@@ -4,23 +4,28 @@ import Map from '../map/map';
 import { useState, useCallback } from 'react';
 import { useAppDispatch } from '../../hooks';
 
-import { changeSort, updateDisplayedOffers } from '../../store/app-process/app-process';
+import {
+  changeSort,
+  updateDisplayedOffers,
+} from '../../store/app-process/app-process';
 import { Offers } from '../../types/offers';
 import { City } from '../../types/types';
 import NoOffers from '../no-offers/no-offers';
-
 
 type CitiesContainerProps = {
   offers: Offers;
   currentSort: string;
   currentCity: City;
-}
+};
 
-const CitiesContainer = ({offers,currentSort,currentCity}:CitiesContainerProps) => {
+const CitiesContainer = ({
+  offers,
+  currentSort,
+  currentCity,
+}: CitiesContainerProps) => {
   const [activeId, setActiveId] = useState('');
 
   const dispatch = useAppDispatch();
-
 
   const handleOffersListAtiveId = useCallback(
     (id: string) => setActiveId(id),
@@ -28,7 +33,7 @@ const CitiesContainer = ({offers,currentSort,currentCity}:CitiesContainerProps) 
   );
 
   if (offers.length < 1) {
-    return <NoOffers city={currentCity}/>;
+    return <NoOffers city={currentCity} />;
   }
 
   const onSortClick = (sortType: string) => {
@@ -42,7 +47,8 @@ const CitiesContainer = ({offers,currentSort,currentCity}:CitiesContainerProps) 
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">
-            {offers.length} places to stay in {currentCity.name}
+            {offers.length} {offers.length > 1 ? 'places' : 'place'} to stay in{' '}
+            {currentCity.name}
           </b>
 
           <SortComponents currentSort={currentSort} onSort={onSortClick} />

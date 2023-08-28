@@ -4,15 +4,22 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { City } from '../../types/types';
 import Header from '../../components/header/header';
 import CitiesContainer from '../../components/cities-container/cities-container';
-import { getCity, getCurrentSort, getDisplayOffers } from '../../store/app-process/selectors';
-import { changeCity, updateDisplayedOffers } from '../../store/app-process/app-process';
-
+import {
+  getCity,
+  getCurrentSort,
+  getDisplayOffers,
+} from '../../store/app-process/selectors';
+import {
+  changeCity,
+  updateDisplayedOffers,
+} from '../../store/app-process/app-process';
+import cn from 'classnames';
 
 const Main = () => {
-
   const dispatch = useAppDispatch();
 
   const currentCity = useAppSelector(getCity);
+
   const currentSort = useAppSelector(getCurrentSort);
 
   const offers = useAppSelector(getDisplayOffers);
@@ -25,13 +32,22 @@ const Main = () => {
   return (
     <div className="page page--gray page--main">
       <Header />
-      <main className="page__main page__main--index">
+      <main
+        className={cn(
+          'page__main page__main--index',
+          { 'page__main--index-empty': offers.length < 1 },
+        )}
+      >
         <Helmet>
           <title>6 cities</title>
         </Helmet>
         <h1 className="visually-hidden">Cities</h1>
         <CitiesList currentCity={currentCity} onClickCity={onCityClick} />
-        <CitiesContainer offers={offers} currentCity={currentCity} currentSort={currentSort}/>
+        <CitiesContainer
+          offers={offers}
+          currentCity={currentCity}
+          currentSort={currentSort}
+        />
       </main>
     </div>
   );

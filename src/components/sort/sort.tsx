@@ -35,7 +35,10 @@ const SortComponents = ({ onSort, currentSort }: SortComponentsProps) => {
             'places__option--active': currentSort === SortTypeName.Popular,
           })}
           tabIndex={0}
-          onClick={() => handleSort(SortTypeName.Popular)}
+          onClick={() => {
+            handleSort(SortTypeName.Popular);
+            handleToggle();
+          }}
         >
           Popular
         </li>
@@ -44,7 +47,10 @@ const SortComponents = ({ onSort, currentSort }: SortComponentsProps) => {
             'places__option--active': currentSort === SortTypeName.LowToHigh,
           })}
           tabIndex={0}
-          onClick={() => handleSort(SortTypeName.LowToHigh)}
+          onClick={() => {
+            handleSort(SortTypeName.LowToHigh);
+            handleToggle();
+          }}
         >
           Price: low to high
         </li>
@@ -53,7 +59,10 @@ const SortComponents = ({ onSort, currentSort }: SortComponentsProps) => {
             'places__option--active': currentSort === SortTypeName.HighToLow,
           })}
           tabIndex={0}
-          onClick={() => handleSort(SortTypeName.HighToLow)}
+          onClick={() => {
+            handleSort(SortTypeName.HighToLow);
+            handleToggle();
+          }}
         >
           Price: high to low
         </li>
@@ -62,7 +71,10 @@ const SortComponents = ({ onSort, currentSort }: SortComponentsProps) => {
             'places__option--active': currentSort === SortTypeName.TopRated,
           })}
           tabIndex={0}
-          onClick={() => handleSort(SortTypeName.TopRated)}
+          onClick={() => {
+            handleSort(SortTypeName.TopRated);
+            handleToggle();
+          }}
         >
           Top rated first
         </li>
@@ -71,6 +83,8 @@ const SortComponents = ({ onSort, currentSort }: SortComponentsProps) => {
   );
 };
 
-
-const SortComponentsMemo = memo(SortComponents , (prev, next) => prev.currentSort === next.currentSort);
+const SortComponentsMemo = memo(
+  SortComponents,
+  (prev, next) => prev.currentSort === next.currentSort
+);
 export default SortComponentsMemo;

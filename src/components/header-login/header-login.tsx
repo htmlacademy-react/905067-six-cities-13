@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logoutAction } from '../../store/api-actions';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { getFavOffers } from '../../store/favorite-data/selectors';
+import { AppRoute } from '../../const';
 
 type HeaderLoginProps = {
   userName: string;
@@ -35,7 +36,7 @@ const HeaderLogin = ({ userName }: HeaderLoginProps) => {
               <Link
                 className="header__nav-link"
                 onClick={onSignOutClick}
-                to="/"
+                to="#"
               >
                 <span className="header__signout">Sign out</span>
               </Link>
@@ -46,7 +47,7 @@ const HeaderLogin = ({ userName }: HeaderLoginProps) => {
           <li className="header__nav-item user">
             <Link
               className="header__nav-link header__nav-link--profile"
-              to="/login"
+              to={AppRoute.Login}
             >
               <div className="header__avatar-wrapper user__avatar-wrapper"></div>
               <span className="header__login">Sign in</span>
