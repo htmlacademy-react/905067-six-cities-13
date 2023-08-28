@@ -1,14 +1,14 @@
 import Header from '../../components/header/header';
 import FavoritesMain from '../../components/favorites-main/favorites-main';
 import { useAppSelector } from '../../hooks';
-
+import cn from 'classnames';
 
 import { getFavOffers } from '../../store/favorite-data/selectors';
 
 const Favorites = () => {
   const offers = useAppSelector(getFavOffers);
   return (
-    <div className="page">
+    <div className={cn('page', { 'page--favorites-empty': offers.length < 1 })}>
       <Header />
 
       <FavoritesMain offers={offers} />

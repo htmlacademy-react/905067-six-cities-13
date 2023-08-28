@@ -1,6 +1,4 @@
-export const AppData = {
-  offersCount: 312,
-};
+import { ToastPosition } from 'react-toastify';
 
 export enum AppRoute {
   Login = '/login',
@@ -98,3 +96,9 @@ export enum NameSpace {
 }
 
 export const COMMENT_MIN_LENGTH = 50;
+export const COMMENT_MAX_LENGTH = 300;
+
+
+export const FORM_ERROR_TEXT =
+  'Password was entered incorrectly, it must contain 1 letter and 1 digit.';
+export const TOAST_POSITION: ToastPosition = 'top-center';

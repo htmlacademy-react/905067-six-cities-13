@@ -1,16 +1,20 @@
 import Logo from '../../components/logo/logo';
 import { Helmet } from 'react-helmet-async';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useRef, FormEvent } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
-import { getCity } from '../../store/app-process/selectors';
+import { AppRoute, CITY, FORM_ERROR_TEXT, TOAST_POSITION } from '../../const';
+import { toast } from 'react-toastify';
+import browserHistory from '../../services/browser-history';
+import { changeCity } from '../../store/app-process/app-process';
+import { CityList } from '../../types/types';
+
+type ObjectKey = keyof typeof CITY;
 
 const Login = () => {
   const isAuth = useAppSelector(getAuthorizationStatus);
-
-  const city = useAppSelector(getCity);
 
   const dispatch = useAppDispatch();
 
@@ -18,16 +22,34 @@ const Login = () => {
 
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
+  const getRandomCityName = (obj: CityList) => {
+    const keys = Object.keys(obj);
+    return keys[Math.floor(Math.random() * keys.length)];
+  };
+
+  const randomCity = CITY[getRandomCityName(CITY) as ObjectKey];
+
+  const handleRandomCityClick = () => {
+    browserHistory.push(AppRoute.Root);
+    dispatch(changeCity(randomCity));
+  };
+
+  const passwordValidation = (password: string): boolean =>
+    /^(?=.*[a-z])(?=.*\d).*$/.test(password);
+
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-
     if (loginRef.current !== null && passwordRef.current !== null) {
-      dispatch(
-        loginAction({
-          login: loginRef.current.value,
-          password: passwordRef.current.value,
-        })
-      );
+      if (passwordValidation(passwordRef.current.value)) {
+        dispatch(
+          loginAction({
+            login: loginRef.current.value,
+            password: passwordRef.current.value,
+          })
+        );
+      } else {
+        toast.error(FORM_ERROR_TEXT, { position: TOAST_POSITION});
+      }
     }
   };
   if (isAuth) {
@@ -90,9 +112,13 @@ const Login = () => {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
-                <span>{city.name}</span>
-              </a>
+              <Link
+                onClick={handleRandomCityClick}
+                className="locations__item-link"
+                to={AppRoute.Root}
+              >
+                <span>{randomCity.name}</span>
+              </Link>
             </div>
           </section>
         </div>

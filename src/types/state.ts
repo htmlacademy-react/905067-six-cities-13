@@ -14,6 +14,7 @@ export type AppProcess = {
 export type UserProcess = {
   authorizationStatus: boolean;
   userName: string;
+  authorizationStatusLoading: boolean;
 };
 export type FavData = {
   favOffers: Offers;

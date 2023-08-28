@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
 import StarInput from '../star-input/star-input';
-import { starInputsData } from '../../const';
+import { COMMENT_MAX_LENGTH, starInputsData } from '../../const';
 import { useAppDispatch } from '../../hooks';
 import { postCommentAction } from '../../store/api-actions';
 import { COMMENT_MIN_LENGTH } from '../../const';
@@ -43,6 +43,7 @@ const CommentForm = ({ isAuth, offerId }: CommentFormProps) => {
           unblockForm: unblockForm,
         })
       );
+
     }
   };
   if (commentPostError) {
@@ -51,10 +52,10 @@ const CommentForm = ({ isAuth, offerId }: CommentFormProps) => {
       autoClose: 3000
     });
   }
-  if (commentText.length >= COMMENT_MIN_LENGTH && commentRate && !isValid) {
+  if (commentText.length <= COMMENT_MAX_LENGTH && commentText.length >= COMMENT_MIN_LENGTH && commentRate && !isValid) {
     setValid(true);
   }
-  if (commentText.length < 50 && isValid) {
+  if (commentText.length > COMMENT_MAX_LENGTH && isValid || commentText.length < COMMENT_MIN_LENGTH && isValid || !commentRate && isValid) {
     setValid(false);
   }
 

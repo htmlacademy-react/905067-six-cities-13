@@ -32,9 +32,9 @@ const Review = ({ commentData }: ReviewProps) => {
         </div>
         <p className="reviews__text">{comment}</p>
         <time className="reviews__time" dateTime={date}>
-          {` ${new Date(date).toLocaleString('en-GB', {
+          {`${new Date(date).toLocaleString('en-GB', {
             month: 'long',
-          })}  ${new Date(date).getFullYear()}`}
+          })} ${new Date(date).getFullYear()}`}
         </time>
       </div>
     </li>

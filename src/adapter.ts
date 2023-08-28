@@ -1,4 +1,11 @@
-import { FullOffer, FullOfferServer, Offer, OfferServer, Offers, OffersServer } from './types/offers';
+import {
+  FullOffer,
+  FullOfferServer,
+  Offer,
+  OfferServer,
+  Offers,
+  OffersServer,
+} from './types/offers';
 
 const offersAdapter = (offers: OffersServer): Offers =>
   offers.map(
@@ -7,7 +14,7 @@ const offersAdapter = (offers: OffersServer): Offers =>
       src: offer.previewImage,
       title: offer.title,
       rating: offer.rating,
-      offerType: offer.type,
+      offerType: offer.type.charAt(0).toUpperCase() + offer.type.slice(1),
       price: offer.price,
       city: offer.city.name,
       cordinates: offer.location,
@@ -16,13 +23,12 @@ const offersAdapter = (offers: OffersServer): Offers =>
     })
   );
 
-
 const favOfferAdapter = (offer: OfferServer): Offer => ({
   id: offer.id,
   src: offer.previewImage,
   title: offer.title,
   rating: offer.rating,
-  offerType: offer.type,
+  offerType: offer.type.charAt(0).toUpperCase() + offer.type.slice(1),
   price: offer.price,
   city: offer.city.name,
   cordinates: offer.location,
@@ -30,14 +36,13 @@ const favOfferAdapter = (offer: OfferServer): Offer => ({
   favorite: offer.isFavorite,
 });
 
-
 const offerAdapter = (offer: FullOfferServer): FullOffer => ({
   id: offer.id,
   images: offer.images,
   description: offer.description,
   title: offer.title,
   rating: offer.rating,
-  offerType: offer.type,
+  offerType: offer.type.charAt(0).toUpperCase() + offer.type.slice(1),
   price: offer.price,
   city: offer.city,
   cordinates: offer.location,
@@ -49,4 +54,4 @@ const offerAdapter = (offer: FullOfferServer): FullOffer => ({
   host: offer.host,
 });
 
-export { offersAdapter, offerAdapter,favOfferAdapter };
+export { offersAdapter, offerAdapter, favOfferAdapter };
