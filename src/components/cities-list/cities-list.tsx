@@ -34,6 +34,5 @@ const CitiesList = ({ onClickCity, currentCity }: CitiesListProps) => (
   </section>
 );
 
-
 const CitiesListMemo = memo(CitiesList);
 export default CitiesListMemo;

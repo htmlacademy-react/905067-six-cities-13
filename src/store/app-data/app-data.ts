@@ -13,6 +13,7 @@ const initialState: AppData = {
   nearbyOffers: [],
   offerComments: [],
   commentPostError: false,
+  currentOfferIsLoading: false,
 };
 
 export const appData = createSlice({
@@ -23,6 +24,10 @@ export const appData = createSlice({
     builder
       .addCase(getOfferAction.fulfilled, (state, action) => {
         state.currentOffer = action.payload;
+        state.currentOfferIsLoading = false;
+      })
+      .addCase(getOfferAction.pending, (state) => {
+        state.currentOfferIsLoading = true;
       })
       .addCase(getNearbyOffersAction.fulfilled, (state, action) => {
         state.nearbyOffers = action.payload;

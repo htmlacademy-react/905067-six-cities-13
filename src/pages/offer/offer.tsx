@@ -17,6 +17,7 @@ import Header from '../../components/header/header';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import {
   getCurrentOffer,
+  getCurrentOfferLoadingStatus,
   getNearbyOffers,
   getOfferComments,
 } from '../../store/app-data/selectors';
@@ -39,6 +40,8 @@ const Offer = () => {
 
   const offer = useAppSelector(getCurrentOffer);
 
+  const loadingStatus = useAppSelector(getCurrentOfferLoadingStatus);
+
   const isAuth = useAppSelector(getAuthorizationStatus);
 
   const offerComments = useAppSelector(getOfferComments);
@@ -51,7 +54,7 @@ const Offer = () => {
 
   const mapOffers = [...shufledOffers];
 
-  if (!offer) {
+  if (!offer || loadingStatus) {
     return <Spinner />;
   }
   const {
