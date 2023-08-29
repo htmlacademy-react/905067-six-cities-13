@@ -8,3 +8,4 @@ export const getCurrentOffer = (state: State): FullOffer| null => state[NameSpac
 export const getNearbyOffers = (state: State): Offers => state[NameSpace.Data].nearbyOffers;
 export const getOfferComments = (state: State): Comments => state[NameSpace.Data].offerComments;
 export const getCommentPostError = (state: State): boolean => state[NameSpace.Data].commentPostError;
+export const getCurrentOfferLoadingStatus = (state: State): boolean => state[NameSpace.Data].currentOfferIsLoading;

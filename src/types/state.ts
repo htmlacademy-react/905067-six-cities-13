@@ -25,6 +25,7 @@ export type AppData = {
   nearbyOffers: Offers;
   offerComments: Comments;
   commentPostError: boolean;
+  currentOfferIsLoading: boolean;
 };
 
 export type State = ReturnType<typeof store.getState>;
