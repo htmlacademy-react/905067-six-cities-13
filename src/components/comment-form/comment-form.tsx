@@ -1,12 +1,13 @@
 import { FormEvent, useState } from 'react';
 import StarInput from '../star-input/star-input';
-import { COMMENT_MAX_LENGTH, starInputsData } from '../../const';
+import { COMMENT_MAX_LENGTH, GLOBAL_TOAST_ID, TOAST_AUTOCLOSE_TIME, starInputsData } from '../../const';
 import { useAppDispatch } from '../../hooks';
 import { postCommentAction } from '../../store/api-actions';
 import { COMMENT_MIN_LENGTH } from '../../const';
 import { useAppSelector } from '../../hooks';
 import { getCommentPostError } from '../../store/app-data/selectors';
 import { toast } from 'react-toastify';
+import './comment-form.css';
 
 type CommentFormProps = {
   isAuth: boolean;
@@ -48,8 +49,8 @@ const CommentForm = ({ isAuth, offerId }: CommentFormProps) => {
   };
   if (commentPostError) {
     toast.error('There was a problem posting your comment. Please try again.', {
-      toastId: 'postError',
-      autoClose: 3000
+      toastId: GLOBAL_TOAST_ID,
+      autoClose: TOAST_AUTOCLOSE_TIME
     });
   }
   if (commentText.length <= COMMENT_MAX_LENGTH && commentText.length >= COMMENT_MIN_LENGTH && commentRate && !isValid) {
@@ -60,7 +61,7 @@ const CommentForm = ({ isAuth, offerId }: CommentFormProps) => {
   }
 
   if (!isAuth) {
-    return <h2 style={{ textAlign: 'center' }}>Login to add comments!</h2>;
+    return <h2 className='reviews__not-login'>Login to add comments!</h2>;
   }
 
   return (

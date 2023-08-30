@@ -1,5 +1,5 @@
 import OffersList from '../offers-list/offers-list';
-import SortComponents from '../../components/sort/sort';
+import Sort from '../../components/sort/sort';
 import Map from '../map/map';
 import { useState, useCallback } from 'react';
 import { useAppDispatch } from '../../hooks';
@@ -51,7 +51,7 @@ const CitiesContainer = ({
             {currentCity.name}
           </b>
 
-          <SortComponents currentSort={currentSort} onSort={onSortClick} />
+          <Sort currentSort={currentSort} onSort={onSortClick} />
           <OffersList
             offers={offers}
             onListStateChange={handleOffersListAtiveId}
