@@ -7,7 +7,7 @@ import axios, {
 import { StatusCodes } from 'http-status-codes';
 import { getToken } from './services';
 import { toast } from 'react-toastify';
-import { AppRoute } from '../const';
+import { AppRoute, GLOBAL_TOAST_ID, TOAST_POSITION } from '../const';
 import browserHistory from './browser-history';
 
 type DetailMessageType = {
@@ -53,8 +53,8 @@ export const createAPI = (): AxiosInstance => {
         const detailMessage = error.response.data;
 
         toast.warn(detailMessage.message, {
-          position: 'top-center',
-          toastId: 'warnID',
+          position: TOAST_POSITION,
+          toastId: GLOBAL_TOAST_ID,
         });
       }
 

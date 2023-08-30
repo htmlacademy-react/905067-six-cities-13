@@ -2,12 +2,12 @@ import { SortTypeName } from '../../const';
 import { useState, memo } from 'react';
 import cn from 'classnames';
 
-type SortComponentsProps = {
+type SortProps = {
   currentSort: string;
   onSort: (currentSort: string) => void;
 };
 
-const SortComponents = ({ onSort, currentSort }: SortComponentsProps) => {
+const Sort = ({ onSort, currentSort }: SortProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const handleToggle = () => setIsOpen(!isOpen);
   const handleSort = (sortType: string) => onSort(sortType);
@@ -83,8 +83,8 @@ const SortComponents = ({ onSort, currentSort }: SortComponentsProps) => {
   );
 };
 
-const SortComponentsMemo = memo(
-  SortComponents,
+const SortMemo = memo(
+  Sort,
   (prev, next) => prev.currentSort === next.currentSort
 );
-export default SortComponentsMemo;
+export default SortMemo;
